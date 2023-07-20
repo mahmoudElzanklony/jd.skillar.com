@@ -1,0 +1,98 @@
+<template>
+  <div class="jobs_descriptions current_page">
+     <div class="header_shape">
+      <div class="container">
+       <h2 class="text-center mb-4">
+          <span>{{ words.main_title }}</span>
+          <span>1500</span>
+          <span style="border-bottom: 1px solid gray">{{ words.job_description }}</span>
+       </h2>
+       <form class="filters-input-form">
+          <div class="row">
+             <div class="col-lg-3 col-md-6 position-relative mobile-margin-bottom">
+               <div class="d-flex align-items-center justify-content-between border-side">
+                  <div class="position-relative input-related-icon">
+                    <input class="form-control search_drop_down_input" search_at="search-drop-down"
+                           name="name" :placeholder="words.job_title">
+                    <span><i class="bi bi-funnel"></i></span>
+                  </div>
+                  <span class="dl"><i class="bi bi-chevron-down"></i></span>
+               </div>
+               <ul class="search-drop-down">
+                 <li v-for="i in 5">HTML</li>
+               </ul>
+             </div>
+             <div class="col position-relative">
+               <div class="input-related-icon">
+                 <span><i class="bi bi-search"></i></span>
+                 <input class="form-control" :placeholder="words.job_description">
+               </div>
+             </div>
+             <div class="col-auto">
+                <input type="submit" class="btn btn-primary" :value="words.search">
+             </div>
+          </div>
+       </form>
+     </div>
+     </div>
+     <div class="jobs_data mt-4">
+       <div class="container">
+         <div class="row">
+            <div class="col-lg-6 col-12 mb-2" v-for="i in 10" :key="i">
+               <nuxt-link to="/jobs/1">
+                 <span>{{ i }}</span>
+                 <span class="mrl-reverse-15">Treasurers, Controllers, and Chief Financial Officers</span>
+               </nuxt-link>
+            </div>
+         </div>
+       </div>
+     </div>
+  </div>
+</template>
+
+<script>
+import WordsLang from "../../mixins/WordsLang";
+export default {
+  name: 'jobs',
+  mixins:[WordsLang],
+  data(){
+    return {
+      data: [],
+      skills:['php','mysql','laravel'],
+    }
+  },
+}
+</script>
+
+<style lang="scss">
+@import "~style/variables";
+.search-drop-down{
+  width: 92%;
+}
+.jobs_data{
+  .row{
+    a{
+      display: block;
+      width: 100%;
+      border: 1px solid #dddddd;
+      color:$main_color;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: $normal !important;
+      span:first-of-type{
+        background-color: $main_color;
+        color:white;
+        width: 25px;
+        height: 25px;
+        border-radius: 3px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      span:last-of-type{
+        color:$gray;
+      }
+    }
+  }
+}
+</style>

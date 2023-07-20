@@ -1,0 +1,20 @@
+export default  {
+  personal_data:'Personal data',
+  business_data:'Business data',
+  update_data:'Update data',
+  quick_description:'Quick description about me',
+  resume:'Resume',
+  update_personal_data:'Update personal data',
+  close:'Close',
+  username:'Username',
+  email:'Email',
+  password:'Password',
+  country:'Country',
+  government:'Government',
+  city:'City',
+  address:'Address',
+  video:'Introductory video',
+  save:'Save',
+  select_best_choice:'Select best choice',
+
+};

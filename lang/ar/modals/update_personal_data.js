@@ -1,0 +1,18 @@
+export default  {
+  personal_data:'البيانات الشخصية',
+  business_data:'البيانات المهنية',
+  update_data:'تحديث البيانات',
+  quick_description:'وصف مختصر عني',
+  resume:'السيرة الذاتية',
+  close:'أغلاق',
+  username:'اسم المستخدم',
+  email:'البريد الالكتروني',
+  password:'كلمة المرور',
+  country:'الدولة',
+  government:'المحافظة',
+  city:'المدينة',
+  address:'العنوان',
+  video:'فديو تعريفي',
+  save:'حفظ',
+  select_best_choice:'اختر المناسب لك',
+};
