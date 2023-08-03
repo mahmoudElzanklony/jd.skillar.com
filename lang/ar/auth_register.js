@@ -6,6 +6,7 @@ export default  {
   password:'كلمة المرور',
   password_confirmation:'تأكيد كلمة المرور',
   country:'الدولة',
+  phone:'رقم الهاتف',
   city:'المدينة',
   login:'تسجيل دخول',
   you_have_already_account:'لديك حساب بالفعل',
@@ -16,4 +17,9 @@ export default  {
   agree_conditions:'اوافق علي ',
   privacy_policy:'سياسة الخصوصية',
   terms_of_conditions:'شروط المستخدم',
+  welcome_friend:'مرحبا بك ي صديقي',
+  couple_clicks:'بضع نقرات و نبدأ بعدها',
+  user_type:'نوع المستخدم',
+  client:'شخص',
+  company:'شركة',
 };

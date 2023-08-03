@@ -1,5 +1,11 @@
 export default {
   details_position:'تفاصيل الوظيفة',
+  copy:'نسخ',
+  show_less:'عرض اقل',
+  show_more:'عرض اكثر',
+  copied_success:'تمت عملية النسخ بنجاح',
+  importance:'الأهمية',
+  mastery:'الاتقان',
   buttons:[
     {
       name:'نسخ',
@@ -13,13 +19,47 @@ export default {
       name:'طباعة',
       icon:'bi bi-printer',
     },
-    {
+    /*{
       name:'تحميل',
       icon:'bi bi-download',
-    }
+    }*/
   ],
   task_bar:[
-    'Tasks','Knowledge','Skills','Abilities','Work Activities','Work Context',
-    'Interests','Work Values','Cross walk'
+    {
+      name:'مهام',
+      link:'tasks',
+    },
+    {
+      name:'المعرفة',
+      link:'knowledge',
+    },
+    {
+      name:'المهارات',
+      link:'skills',
+    },
+    {
+      name:'القدرات',
+      link:'abilities',
+    },
+    {
+      name:'أنشطة العمل',
+      link:'work_activities',
+    },
+    {
+      name:'سياقة العمل',
+      link:'work_context',
+    },
+    {
+      name:'الأهتمامات',
+      link:'interests',
+    },
+    {
+      name:'قيم العمل',
+      link:'work_values',
+    },
+    {
+      name:'معبر',
+      link:'cross_walk',
+    },
   ],
 }

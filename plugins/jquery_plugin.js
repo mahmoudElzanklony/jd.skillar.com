@@ -107,13 +107,11 @@ $(document).ready(function (){
 
   // hide drop down list
   $('#__nuxt').on('click',function (e){
-    console.log(e.target);
     $('.search-drop-down').slideUp();
     $('.dl i').removeClass('bi bi-chevron-up').addClass('bi bi-chevron-down');
   });
 
   $('#__nuxt').on('click','.dl',function (e){
-    console.log('abc');
     if($('.dl i').hasClass('bi bi-chevron-down')){
       $('.search-drop-down').slideDown();
       $('.dl i').removeClass('bi bi-chevron-down').addClass('bi bi-chevron-up');
@@ -126,11 +124,30 @@ $(document).ready(function (){
   // drop down list search
   $('#__nuxt').on('keyup','.search_drop_down_input',function (e){
     e.stopPropagation();
-    $('.'+$(this).attr("search_at")).slideDown();
-    $(this).parent().next().find('i').removeClass('bi bi-chevron-down').addClass('bi bi-chevron-up');
+    if($(this).val().length == 0){
+      $('.' + $(this).attr("search_at")).slideUp();
+      $(this).parent().next().find('i').removeClass('bi bi-chevron-up').addClass('bi bi-chevron-down');
+    }else {
+      $('.' + $(this).attr("search_at")).slideDown();
+      $(this).parent().next().find('i').removeClass('bi bi-chevron-down').addClass('bi bi-chevron-up');
+    }
   });
 
   // ----------------------------------end of job description-----------------------------------------------------
+
+  // show button at buttom of page
+  $(window).on('scroll',function (e){
+    if($(window).scrollTop() > 300){
+      $('.up').fadeIn();
+    }else{
+      $('.up').fadeOut();
+    }
+  });
+  // go to up of page
+  $('#__nuxt').on('click','.up',function (e){
+    $(window).scrollTop(0)
+  });
+
 
   // see changes of id of url
 /*  var main_sections = $('body #__nuxt #__layout > div').children();

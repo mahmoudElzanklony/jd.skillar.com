@@ -763,6 +763,21 @@ ul.search-drop-down{
 .auth{
   position: relative;
   height: 700px;
+  margin-top: 75px !important;
+  .auth-bk{
+    background-color: $blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .container-fluid{
+    .row{
+      >div:last-of-type{
+
+      }
+    }
+  }
   .shape{
     position: absolute;
     height: 100%;
@@ -809,8 +824,6 @@ ul.search-drop-down{
     position: relative;
     z-index: 9999;
     height: 100%;
-    display: flex;
-    align-items: center;
     .form-data{
       background-color: white;
       border: 1px solid #dddddd;
@@ -907,5 +920,57 @@ table{
   }
 }
 
+.up{
+  position: fixed;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: $main_color;
+  color:white;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+}
 
 
+/*-----------------v spniper----------------*/
+.v-spinner{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 999999999;
+  right: 0px;
+  left: 0;
+  width: 100%;
+  top:0px;
+  bottom: 0px;
+}
+
+
+@media print {
+  nav,footer{
+    display: none;
+    visibility: hidden;
+  }
+  .main-data-header{
+    div{
+      visibility: hidden;
+    }
+  }
+  button{
+    visibility: hidden;
+  }
+}
+
+
+
+
+.swal2-container{
+  z-index: 9999 !important;
+}

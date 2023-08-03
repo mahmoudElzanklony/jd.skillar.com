@@ -6,7 +6,13 @@ export default {
   info:'بيانات',
   select_from_list:'أختر من القائمة الاتية',
   close:'أغلاق',
+  total:'مجموع العناصر',
+  add_item:'اضافة عنصر جديد',
   filter:'بحث',
+  country_modal_table:{
+    ar_name:'الاسم بالعربي',
+    en_name:'الاسم بالانجليزي'
+  },
   country_modal:[
     {
       name:'اسم الدولة',

@@ -7,7 +7,6 @@ export default {
     },
     created() {
       if (process.client) {
-        console.log("Hello from the client!")
         let com = this;
         let lang = '';
         let file = '';
@@ -21,7 +20,6 @@ export default {
         }else{
           file = this.file_name;
         }
-        console.log(file);
         let words = import('~/lang/'+lang+'/'+file).then((e)=>{
           com.words = e.default;
         });

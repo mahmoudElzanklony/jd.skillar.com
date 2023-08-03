@@ -51,6 +51,7 @@
       </div>
       <div class="col-lg-10 col-md-8">
         <nuxt />
+        <loader v-if="loader_status" :color="'#0a58ca'" size="60px"></loader>
       </div>
     </div>
 
@@ -61,7 +62,7 @@
 <script>
 
 import WordsLang from "../mixins/WordsLang";
-
+import {mapGetters} from "vuex";
 export default {
   name: "admin",
   data(){
@@ -71,6 +72,11 @@ export default {
      }
   },
   mixins:[WordsLang],
+  computed:{
+    ...mapGetters({
+      'loader_status':'loader/getLoaderGetter',
+    })
+  },
   mounted() {
     console.log('abc admin');
     this.current_page = this.$route.path.split('/')[this.$route.path.split('/').length - 1];

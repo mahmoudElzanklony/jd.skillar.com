@@ -14,5 +14,31 @@ export default {
     educations:'Educations',
     languages:'Languages',
     experience:'Experience',
-  }
+  },
+  filters:[
+    {
+      name:'Username',
+      input:'username',
+      type:'text',
+    },
+    {
+      name:'Start date',
+      input:'start_date',
+      type:'date',
+    },
+    {
+      name:'End date',
+      input:'end_date',
+      type:'date',
+    },
+  ],
+
+
+  table:{
+    username:'Username',
+    email:'Email',
+    country_id:'Country',
+    phone:'Phone',
+  },
+
 }

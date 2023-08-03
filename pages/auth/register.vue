@@ -1,16 +1,14 @@
 <template>
   <section class="auth current_page">
-    <video src="/videos/bg.mp4" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"></video>
     <div class="auth-content">
-      <div class="shape width-100-mobile"></div>
-      <div class="container">
-        <div class="row align-items-center">
+      <div class="container-fluid">
+        <div class="row h-100">
 
           <div class="col-md-5 mb-2">
-            <div class="form-data">
+            <div class="form-data mt-3">
               <form class="p-3"
                     method="post"
-                    @submit.prevent="onSubmit">
+                    @submit.prevent="register">
                 <div class="social_media_apps_auth">
                   <p class="text-center mb-2 mt-3">{{ words.register_with }}</p>
                   <div class="text-center mb-2">
@@ -29,7 +27,7 @@
                 </div>
                 <div class="form-group mb-2 input-icon flex-wrap">
                   <label>{{ words.username }}</label>
-                  <input class="form-control" name="email" >
+                  <input class="form-control" name="username" >
                   <span><i class="bi bi-person"></i></span>
                 </div>
                 <div class="form-group mb-2 input-icon flex-wrap">
@@ -48,10 +46,25 @@
                   <span><i class="bi bi-key"></i></span>
                 </div>
                 <div class="form-group mb-3 input-icon flex-wrap">
+                  <label>{{ words.phone }}</label>
+                  <input class="form-control" name="phone" type="number" >
+                  <span><i class="bi bi-phone"></i></span>
+                </div>
+                <div class="form-group mb-3 input-icon flex-wrap">
                   <label>{{ words.country }}</label>
-                  <select class="form-control" name="country_id" >
+                  <select class="form-control" name="country_id"
+                          required>
                     <option value="">{{ words.select_best_choice }}</option>
-                    <option value="1" v-for="i in 5" :key="i" :value="i">egypt</option>
+                    <option  v-for="(i,index) in getCountriesGetter" :key="index" :value="i['id']">{{ i['name'] }}</option>
+                  </select>
+                  <span><i class="bi bi-arrow-down-short"></i></span>
+                </div>
+                <div class="form-group mb-3 input-icon flex-wrap">
+                  <label>{{ words.user_type }}</label>
+                  <select class="form-control" name="type" required>
+                    <option value="">{{ words.select_best_choice }}</option>
+                    <option value="client">{{ words.client }}</option>
+                    <option value="company">{{ words.company }}</option>
                   </select>
                   <span><i class="bi bi-arrow-down-short"></i></span>
                 </div>
@@ -83,11 +96,13 @@
               </form>
             </div>
           </div>
-          <div class="col-md-7 mb-2 mobile-hide">
-            <div class="info text-center-mobile">
-              <h2 class="mb-0 white big">Skillar</h2>
-              <h2 class="white big">{{ words.for_every_one }}</h2>
-              <p class="white">{{ words.be_member_of_our_community }}</p>
+          <div class="col-md-7 mb-2 mobile-hide auth-bk">
+            <div class="info text-center-mobile flex align-items-center justify-content-between">
+              <img src="/images/auth/bk.png">
+              <div class="text-center">
+                <p class="mb-2 mt-3 white">{{ words.welcome_friend }}</p>
+                <p class="mb-0 white">{{ words.couple_clicks }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -102,13 +117,23 @@
 
 <script>
 import WordsLang from "../../mixins/WordsLang";
+import {mapGetters,mapActions} from 'vuex';
 export default {
   name: "register",
   mixins:[WordsLang],
+  async fetch({ store }) {
+    await store.dispatch('places/countries/getCountriesAction');
+  },
   data(){
     return {
-      message: null
+      message:null,
     }
+  },
+  computed:{
+    ...mapGetters({
+      'getCountriesGetter':'places/countries/getCountriesGetter',
+      'getCitiesGetter':'places/cities/getCitiesGetter',
+    })
   },
   methods:{
     verify_recaptha() {
@@ -121,7 +146,11 @@ export default {
           console.log(token)
         });
       });
-    }
+    },
+    ...mapActions({
+      'getCountriesAction':'places/countries/getCountriesAction',
+      'register':'auth/register/registerAction',
+    }),
   },
   components:{
   },

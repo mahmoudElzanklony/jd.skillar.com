@@ -7,6 +7,7 @@ export default  {
   password_confirmation:'Password confirmation',
   country:'Country',
   city:'City',
+  phone:'Phone',
   login:'Login',
   you_have_already_account:'you have an account ?',
   register:'Register',
@@ -16,4 +17,8 @@ export default  {
   agree_conditions:'I agree with ',
   privacy_policy:'Privacy policy',
   terms_of_conditions:'Terms of conditions',
+  welcome_friend:'Welcome aboard my friend',
+  couple_clicks:'just a couple of clicks and we start',
+  client:'Client',
+  company:'Company',
 };

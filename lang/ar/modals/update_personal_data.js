@@ -15,4 +15,16 @@ export default  {
   video:'فديو تعريفي',
   save:'حفظ',
   select_best_choice:'اختر المناسب لك',
+  phone:'رقم الهاتف',
+  leave_password:'اترك كلمه المرور فارغة في حالة عدم تغييرها',
+
+  title:'الاسم',
+  ar_title:'الاسم بالعربي',
+  en_title:'الاسم بالانجليزي',
+  ar_desc:'الوصف بالعربي',
+  en_desc:'الوصف بالانجليزي',
+  description:'الوصف',
+  note:'ملاحظه',
+  sk_group:'تابع ل',
+
 };

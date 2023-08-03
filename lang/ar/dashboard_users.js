@@ -1,18 +1,33 @@
 export default {
   users_statistics:'احصائيات المستخدمين',
-  companies_statistics:'احصائيات الشركات',
-  search_user:'يمكنك البحث هنا بالاسم  او بالوصف',
+  search:'بحث',
   delete:'مسح',
   edit:'تعديل',
-  company:{
-    jobs:'الوظائف',
+  image:'الصورة الشخصية',
+  password:'كلمة المرور',
+  control:'التحكم',
+  filters:[
+    {
+      name:'اسم المستخدم',
+      input:'username',
+      type:'text',
+    },
+    {
+      name:'بداية التاريخ',
+      input:'start_date',
+      type:'date',
+    },
+    {
+      name:'نهاية التاريخ',
+      input:'end_date',
+      type:'date',
+    },
+  ],
+
+  table:{
+    username:'اسم المستخدم',
+    email:'البريد الالكتروني',
+    country_id:'الدولة',
+    phone:'رقم الهاتف',
   },
-  profile:{
-    skills:'مهارات',
-    projects:'مشاريع',
-    certificates:'شهادات',
-    educations:'تعليم',
-    languages:'لغات',
-    experience:'خبرات سابقة',
-  }
 }

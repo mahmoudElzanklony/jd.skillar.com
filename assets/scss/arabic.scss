@@ -151,9 +151,6 @@
 // start of auth page ---------------------
 
 .auth{
-  .info{
-    padding-right: 150px;
-  }
   .shape{
     right: 0px;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 17% 100%);
@@ -253,4 +250,8 @@
       left: unset;
     }
   }
+}
+
+.up{
+  right: 20px;
 }

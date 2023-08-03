@@ -100,8 +100,10 @@ export default {
     changeLang(){
       if(localStorage.getItem('lang') == null || localStorage.getItem('lang') == 'ar'){
           localStorage.setItem('lang','en');
+          document.cookie = "lang=en;";
       }else{
         localStorage.setItem('lang','ar');
+        document.cookie = "lang=ar;";
       }
       window.location = document.URL;
     },

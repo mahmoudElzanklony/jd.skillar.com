@@ -16,5 +16,15 @@ export default  {
   video:'Introductory video',
   save:'Save',
   select_best_choice:'Select best choice',
+  leave_password:'Leave password empty in case you dont want to edit it',
+
+  title:'Name',
+  ar_title:'Title in arabic',
+  en_title:'Title in english',
+  ar_desc:'Description in arabic',
+  en_desc:'Description in english',
+  description:'Description',
+  note:'Note',
+  sk_group:'Related to',
 
 };

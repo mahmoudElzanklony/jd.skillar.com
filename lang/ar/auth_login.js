@@ -10,4 +10,6 @@ export default  {
   reset_password:'استعاده كلمة المرور',
   or:'او',
   register_with:'سجل عن طريق',
+  welcome_friend:'مرحبا بك ي صديقي',
+  couple_clicks:'بضع نقرات و نبدأ بعدها',
 };

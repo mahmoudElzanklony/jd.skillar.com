@@ -43,6 +43,9 @@ export default {
     {src:'~/plugins/sweet_alert',mode:'client'},
    // {src:'~/plugins/text_editor',mode:'client'},
     {src:'~/plugins/tooltip_plugin',mode:'client'},
+    {src:'~/plugins/axios'},
+    {src:'~/plugins/loader',mode:'client'},
+
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -73,7 +76,8 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'http://localhost:8000/api/',
+    // proxy: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

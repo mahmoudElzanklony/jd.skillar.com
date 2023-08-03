@@ -2,53 +2,51 @@
   <div class="dashboard">
     <h1 class="text-center fw-bold blue mb-3 mt-3">{{ words.users_statistics }}</h1>
     <div class="container">
-      <form class="input-icon">
-        <input class="form-control mb-2" :placeholder="words.search_user">
-        <span class="top-8"><i class="bi bi-search"></i></span>
-      </form>
-      <div class="row mb-3">
-        <div class="col-lg-4 col-md-6" v-for="i in 20">
-
-          <div class="user-card mb-3 position-relative">
-            <ul class="dots-action cursor-pointer d-inline-block">
-              <li class="dots">
-                <i class="bi white bi-three-dots-vertical gray"></i>
-                <ul>
-                  <li data-bs-toggle="modal"
-                      data-bs-target=".modal">
-                    <span class="gray"><i class="bi bi-pencil-square"></i></span>
-                    <span class="gray">{{ words.edit }}</span>
-                  </li>
-                  <li>
-                    <span class="red"><i class="bi bi-trash"></i></span>
-                    <span class="gray">{{ words.delete }}</span>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <div class="user-header">
-               <a target="_blank" class="cursor-pointer" href="/profile/ahmed">
-                 <img src="/images/users/1.webp">
-               </a>
+      <form method="post" @submit.prevent="search">
+        <div class="row" v-if="words.filters">
+          <div class="col-lg-3 col-md-6 mb-2" v-for="i in words.filters">
+            <div>
+              <label>{{ i['name'] }}</label>
+              <input class="form-control mb-2" :name="i['input']" :type="i['type']" >
             </div>
-            <div class="user-body p-2">
-              <p class="fw-bold text-center mb-0">Ahmed ali</p>
-              <p class="text-center mb-2">Full stack engineer have experience more than 6 years in we development</p>
-              <ul class="d-flex justify-content-center align-items-center flex-wrap" v-if="words.profile">
-                <li class="mrl-2 mb-2" v-for="(i,index) in Object.keys(words.profile)" :key="index">
-                  <span class="position-relative top-3 gray"><i class="bi bi-tag"></i></span>
-                  <nuxt-link :to="'/dashboard/'+dashboard_name+'/info?type='+i+'&id=4'">
-                    <span class="blue">4</span>
-                    <span class="blue">{{ words.profile[i] }}</span>
-                  </nuxt-link>
-                </li>
-              </ul>
-            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-2">
+             <input type="submit" class="btn btn-primary w-100 position-relative top-3 mt-4" :value="words.search">
           </div>
 
         </div>
+      </form>
+      <div class="users_data mt-4" v-if="words.table">
+        <div class="container">
+          <div class="infinite_scroll" action_path="dashboard/users/allDataAction">
+             <table class="table">
+               <thead>
+                  <tr>
+                    <td v-for="(name,index) in Object.values(words.table)" :key="index">{{ name }}</td>
+                    <td>{{ words.control }}</td>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr v-for="(i,index) in users_data" :key="index" :class="'tr_'+index">
+                    <td>{{ i['username'] }}</td>
+                    <td>{{ i['email'] }}</td>
+                    <td>{{ i['country']['name'] }}</td>
+                    <td>{{ i['phone'] }}</td>
+                    <td>
+                      <button class="btn btn-outline-primary btn-sm"
+                              data-bs-toggle="modal" data-bs-target="#update_personal_data"
+                              @click="update_item(i)">{{ words['edit'] }}</button>
+                      <button class="btn btn-outline-danger btn-sm"
+                              @click="delete_item('users',i['id'],'User','.tr_'+index)"
+                              >{{ words['delete'] }}</button>
+                    </td>
+                  </tr>
+               </tbody>
+             </table>
+          </div>
+        </div>
       </div>
-      <update_personal_data></update_personal_data>
+      <update_personal_data :item="item"></update_personal_data>
 
     </div>
   </div>
@@ -57,12 +55,36 @@
 <script>
 import WordsLang from "../../../mixins/WordsLang";
 import update_personal_data from "../../../components/Modals/candidate/update_personal_data";
+import InfiniteScroll from "../../../mixins/InfiniteScroll";
+import UpdateItem from "../../../mixins/UpdateItem";
+import delete_item from "../../../mixins/delete_item";
+import {mapGetters , mapActions} from 'vuex';
 export default {
   name: "index",
   layout:"admin",
-  mixins:[WordsLang],
+  mixins:[WordsLang,InfiniteScroll,UpdateItem,delete_item],
   components:{
     update_personal_data
+  },
+  methods:{
+    ...mapActions({
+      'all_users_actions':'dashboard/users/allDataAction',
+    }),
+    search:function (){
+      console.log('search');
+      var data  = new FormData(event.target);
+      data.append('empty',true);
+      this.all_users_actions(data)
+    },
+  },
+  mounted() {
+    this.all_users_actions();
+  },
+  computed:{
+    ...mapGetters({
+      'users_data':'dashboard/users/getData',
+      'users_total':'dashboard/users/getTotal',
+    })
   },
   data(){
     return {

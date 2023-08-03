@@ -101,9 +101,6 @@
   margin-right: -25px;
 }
 
-.auth .info {
-  padding-right: 150px;
-}
 .auth .shape {
   right: 0px;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 17% 100%);
@@ -153,6 +150,9 @@
   nav .dots-action > li > ul {
     left: unset;
   }
+}
+.up {
+  right: 20px;
 }
 
 /*# sourceMappingURL=arabic.css.map */

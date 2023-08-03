@@ -4,28 +4,29 @@
       <div class="container">
        <h2 class="text-center mb-4">
           <span>{{ words.main_title }}</span>
-          <span>1500</span>
+          <span>{{ getTotal }}</span>
           <span style="border-bottom: 1px solid gray">{{ words.job_description }}</span>
        </h2>
-       <form class="filters-input-form">
+       <form class="filters-input-form infinite_scroll_form" @submit.prevent="SearchNames">
           <div class="row">
              <div class="col-lg-3 col-md-6 position-relative mobile-margin-bottom">
                <div class="d-flex align-items-center justify-content-between border-side">
-                  <div class="position-relative input-related-icon">
+                  <div class="position-relative input-related-icon"> <!-- input-related-icon -->
                     <input class="form-control search_drop_down_input" search_at="search-drop-down"
+                           @keyup="SearchNames"
                            name="name" :placeholder="words.job_title">
                     <span><i class="bi bi-funnel"></i></span>
                   </div>
-                  <span class="dl"><i class="bi bi-chevron-down"></i></span>
+                  <span v-if="false" class="dl"><i class="bi bi-chevron-down"></i></span>
                </div>
-               <ul class="search-drop-down">
+               <ul class="search-drop-down" v-if="false">
                  <li v-for="i in 5">HTML</li>
                </ul>
              </div>
              <div class="col position-relative">
                <div class="input-related-icon">
                  <span><i class="bi bi-search"></i></span>
-                 <input class="form-control" :placeholder="words.job_description">
+                 <input class="form-control" @keyup="SearchNames" name="desc" :placeholder="words.job_description">
                </div>
              </div>
              <div class="col-auto">
@@ -37,11 +38,11 @@
      </div>
      <div class="jobs_data mt-4">
        <div class="container">
-         <div class="row">
-            <div class="col-lg-6 col-12 mb-2" v-for="i in 10" :key="i">
-               <nuxt-link to="/jobs/1">
-                 <span>{{ i }}</span>
-                 <span class="mrl-reverse-15">Treasurers, Controllers, and Chief Financial Officers</span>
+         <div class="row infinite_scroll" action_path="jobs/allJobsAction">
+            <div class="col-lg-6 col-12 mb-2" v-for="(i,index) in jobs_data" :key="index">
+               <nuxt-link :to="'/jobs/'+i['id']">
+                 <span>{{ index + 1 }}</span>
+                 <span class="mrl-reverse-15">{{ i['name'] }}</span>
                </nuxt-link>
             </div>
          </div>
@@ -52,14 +53,39 @@
 
 <script>
 import WordsLang from "../../mixins/WordsLang";
+import InfiniteScroll from "../../mixins/InfiniteScroll";
+import {mapGetters,mapActions} from 'vuex';
+
 export default {
   name: 'jobs',
-  mixins:[WordsLang],
+  mixins:[WordsLang,InfiniteScroll],
   data(){
     return {
       data: [],
       skills:['php','mysql','laravel'],
+      lang:'',
     }
+  },
+  methods:{
+    ...mapActions({
+        'all_jobs_action':'jobs/allJobsAction',
+        'getJobsByName':'jobs/getJobsByName',
+    }),
+    SearchNames(){
+        var data = new FormData(document.querySelector('form'));
+        this.current_page = 2;
+        this.getJobsByName(data);
+    }
+  },
+  mounted() {
+    this.$store.dispatch('jobs/allJobsAction',{empty:true});
+    this.lang = localStorage.getItem('lang');
+  },
+  computed:{
+    ...mapGetters({
+      'jobs_data':'jobs/getData',
+      'getTotal':'jobs/getTotal'
+    })
   },
 }
 </script>

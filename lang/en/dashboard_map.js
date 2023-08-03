@@ -7,6 +7,12 @@ export default {
   select_from_list:'Select from list',
   close:'Close',
   filter:'Filter',
+  total:'Total',
+  add_item:'Add new item',
+  country_modal_table:{
+     ar_name:'Name in arabic',
+     en_name:'Name in english'
+  },
   country_modal:[
     {
       name:'Country name',

@@ -10,4 +10,6 @@ export default  {
   reset_password:'Reset password now',
   register_with:'Login with',
   or:'Or',
+  welcome_friend:'Welcome aboard my friend',
+  couple_clicks:'just a couple of clicks and we start',
 };
