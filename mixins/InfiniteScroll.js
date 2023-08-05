@@ -23,8 +23,15 @@ export default {
             com.current_position = $(window).scrollTop();
             console.log(com.action_path);
             if (com.action_path != '') {
-              console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
               data.append('page', com.current_page);
+              console.log(com.payload_form);
+              if(com.payload_form){
+                for(let item of Object.keys(com.payload_form)){
+                  console.log(item);
+                  console.log(com.payload_form[item]);
+                  data.append(item, com.payload_form[item]);
+                }
+              }
               com.$store.dispatch(com.action_path, data);
               com.current_page++;
             }

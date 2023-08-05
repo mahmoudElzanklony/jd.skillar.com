@@ -19,7 +19,7 @@
       <div class="users_data mt-4" v-if="words.table">
         <div class="container">
           <div class="infinite_scroll" action_path="dashboard/users/allDataAction">
-             <table class="table">
+             <table class="table table-hover table-bordered table-striped">
                <thead>
                   <tr>
                     <td v-for="(name,index) in Object.values(words.table)" :key="index">{{ name }}</td>

@@ -42,6 +42,30 @@ $(document).ready(function (){
   });
 
 
+
+
+  // preview image at box
+  $('#__nuxt').on('change','.preview-image',function (){
+    var file_data = event.target.files[0];
+    var allowed_extensions = ['png','jpg','jpeg','gif'];
+    if(allowed_extensions.includes(file_data.type.split('/')[1])){
+      console.log(document.querySelector($(this).attr('selector')));
+      document.querySelector($(this).attr('selector')).src = URL.createObjectURL(file_data);
+    }else{
+      // its not an image
+      if(localStorage.lang == 'ar'){
+        var msg = 'لقد قمت بتحميل ملف ليس صورة من فضلك حاول مرة اخري';
+      }else{
+        var msg = 'You uploaded a file not an image please try again';
+      }
+      Toast.fire({
+        icon:'error',
+        title:msg,
+      })
+    }
+  });
+
+
   // control show hide parent element
   $('#__nuxt').on('click','.section-title-control span:last-of-type',function (){
       $(this).parent().next().slideToggle();

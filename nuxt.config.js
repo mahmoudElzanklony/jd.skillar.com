@@ -30,6 +30,9 @@ export default {
   css: [
     '@/assets/scss/style.scss',
   ],
+  publicRuntimeConfig: {
+    url: process.env.baseUrl,
+  },
   alias: {
     'images': resolve(__dirname, './assets/images'),
     'style': resolve(__dirname, './assets/scss'),

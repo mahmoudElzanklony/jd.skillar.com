@@ -916,6 +916,11 @@ table{
   tr{
     td{
       vertical-align: middle;
+      img{
+        height: 50px;
+        display: block;
+        margin: auto;
+      }
     }
   }
 }
@@ -973,4 +978,13 @@ table{
 
 .swal2-container{
   z-index: 9999 !important;
+}
+
+.modal{
+  img{
+    height: 100px;
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+  }
 }

@@ -31,7 +31,7 @@
                     @click="update_item(null)">{{ words.add_item }}</button>
           </div>
           <div class="infinite_scroll" action_path="dashboard/skills/allDataAction">
-            <table class="table">
+            <table class="table table-bordered table-hover table-striped">
               <thead>
               <tr>
                 <td v-for="(name,index) in Object.values(words.table)" :key="index">{{ name }}</td>
