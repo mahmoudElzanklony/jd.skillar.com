@@ -98,7 +98,7 @@
                 <div class="col-12 mb-2">
                   <div class="form-group position-relative input-icon flex-wrap">
                     <label>{{ words['table']['en_name'] }}</label>
-                    <span><i class="bi bi-person-circle"></i></span>
+                    <span><i class="bi bi-info"></i></span>
                     <input name="en_title" class="form-control"
                            :value="item != null ? item['en_title']:''"
                            required>
@@ -207,7 +207,8 @@ export default {
   data(){
     return {
       dashboard_name:this.$route.path.split('/')[this.$route.path.split('/').length - 1],
-      valid_pages:['abilities','certificates','educations','interests','competencies'],
+      valid_pages:['abilities','certificates','educations','interests','competencies'
+        ,'references','skills_groups','work_activities','work_contexts','work_values'],
       payload_form:{}
     }
   },

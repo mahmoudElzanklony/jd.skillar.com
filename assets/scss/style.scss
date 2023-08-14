@@ -976,9 +976,6 @@ table{
 
 
 
-.swal2-container{
-  z-index: 9999 !important;
-}
 
 .modal{
   img{
@@ -987,4 +984,9 @@ table{
     margin: auto;
     border-radius: 5px;
   }
+}
+
+
+.swal2-container{
+  z-index: 9999999999 !important;
 }

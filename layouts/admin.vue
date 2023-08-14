@@ -10,17 +10,10 @@
                  <nuxt-link to="/dashboard">{{ words.home }}</nuxt-link>
                </li>
                <li>
-                <span class="mrl-half"><i class="bi bi-person-fill-gear"></i></span>
-                <nuxt-link to="/dashboard/employees">{{ words.admins }}</nuxt-link>
+                <span class="mrl-half"><i class="bi bi-group"></i></span>
+                <nuxt-link to="/dashboard/users">{{ words.users }}</nuxt-link>
                </li>
-               <li>
-                  <span class="mrl-half"><i class="bi bi-people"></i></span>
-                  <nuxt-link to="/dashboard/users">{{ words.employees }}</nuxt-link>
-               </li>
-               <li>
-                 <span class="mrl-half"><i class="bi bi-buildings"></i></span>
-                 <nuxt-link to="/dashboard/companies">{{ words.companies }}</nuxt-link>
-               </li>
+
                <li>
                 <span class="mrl-half"><i class="bi bi-briefcase"></i></span>
                 <nuxt-link to="/dashboard/jobs">{{ words.jobs }}</nuxt-link>

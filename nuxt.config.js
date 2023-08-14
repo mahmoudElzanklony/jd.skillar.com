@@ -92,6 +92,6 @@ export default {
     }
   },
   router: {
-   // middleware: ['config_plugins'],
+    middleware: ['auth_admin'],
   }
 }

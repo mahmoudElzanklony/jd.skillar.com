@@ -76,6 +76,15 @@ $(document).ready(function (){
       }
   });
 
+  $('#__nuxt').on('click','.modal ul.list-types li',function (){
+    console.log($(this));
+    console.log($(this).index());
+    $(this).parent().find('.active').removeClass('active');
+    $(this).addClass('active');
+    $('.modal .content > div').fadeOut();
+    $('.modal .content > div').eq($(this).index()).fadeIn();
+  });
+
   // control of variety of data up and down
   $('#__nuxt').on('click','.variety_data .one_variety .heading p span:last-of-type',function (){
     $(this).parent().parent().next().slideToggle();
