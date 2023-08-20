@@ -3,6 +3,7 @@ import formValidation from "../../validation/formValidation";
 
 export const state = () => ({
   data: [],
+  parents:[],
   item:{},
   total:0,
   status:true
@@ -11,6 +12,9 @@ export const state = () => ({
 export const getters = {
   getData(state) {
     return state.data
+  },
+  getParents(state) {
+    return state.parents
   },
   getTotal(state){
     return state.total;
@@ -35,6 +39,9 @@ export const mutations = {
   },
   InitializeData(state,payload){
     state.data = payload;
+  },
+  SetParents(state,payload){
+    state.parents = payload;
   },
   UpdateData(state,payload){
     if(payload.length > 0 ) {
@@ -88,6 +95,13 @@ export const actions = {
       commit('loader/updateLoaderMutation', false, {root: true});
     });
   },
+
+  async parentsAction({state,commit}){
+    return this.$axios.post('jobs/parents').then((e) => {
+      commit('SetParents', e.data.data);
+    })
+  },
+
   async save_data({state,commit},payload = [],target){
     commit('loader/updateLoaderMutation',true,{root:true});
     return this.$axios.post('dashboard/skills/save', payload).then((e) => {
@@ -102,4 +116,31 @@ export const actions = {
       commit('loader/updateLoaderMutation', false, {root: true});
     });
   },
+
+  async save_job_information({state,commit}){
+    commit('loader/updateLoaderMutation',true,{root:true});
+    var target = event.target;
+    var payload = new FormData(target);
+    if(payload.has('id')){
+      var url = '/jobs/'+payload.get('id');
+      payload.append('_method','put');
+    }else{
+      var url = '/jobs';
+    }
+    return this.$axios.post(url, payload).then((e) => {
+      console.log(url);
+      console.log(e.data);
+      if( payload instanceof FormData && payload.has('id')
+      ){
+        commit('update_index_data',e.data.data);
+      }else {
+        commit('UpdateData', e.data.data);
+      }
+      formValidation(e.data,target);
+    }).finally(() => {
+      commit('loader/updateLoaderMutation', false, {root: true});
+    });
+  },
+
+
 }

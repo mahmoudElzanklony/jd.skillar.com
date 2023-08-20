@@ -2,6 +2,8 @@
   <div class="dashboard">
     <h1 class="text-center fw-bold blue mb-3 mt-3">{{ words.main_title }}</h1>
     <div class="container">
+      <div>
+      </div>
       <form method="post" @submit.prevent="search">
         <div class="row" v-if="words.filters">
           <div class="col-lg-3 col-md-6 mb-2" v-for="i in words.filters">
@@ -13,8 +15,8 @@
           <div class="col-lg-3 col-md-6 mb-2">
             <input type="submit" class="btn btn-primary w-100 position-relative top-3 mt-4" :value="words.search">
           </div>
-
         </div>
+        <p class="mb-0 blue cursor-pointer">{{ words['more_filters'] }}</p>
       </form>
       <div class="users_data mt-4" v-if="words.table">
         <div class="container">
@@ -42,7 +44,7 @@
                 <td>{{ i['ar_desc'] }}</td>
                 <td>{{ i['en_desc'] }}</td>
                 <td>{{ !(i['parent_id'] == 0 || i['parent_id'] == null) ? i['parent']['name']:'' }}</td>
-                <td>{{ i['status'] }}</td>
+                <td>{{ i['status'] == 1 ? words['active']:words['disable'] }}</td>
                 <td>
                   <button class="btn btn-outline-primary btn-sm w-100"
                           data-bs-toggle="modal" data-bs-target="#more_info"
@@ -63,7 +65,8 @@
         </div>
       </div>
       <job_info_view_box :item="all_job_info_data"></job_info_view_box>
-      <job_info_save_box :item="all_job_info_data"></job_info_save_box>
+      <job_info_save_box :item="all_job_info_data" :parents="all_parents"></job_info_save_box>
+
     </div>
   </div>
 </template>
@@ -74,9 +77,10 @@ import update_personal_data from "../../components/Modals/candidate/update_perso
 import InfiniteScroll from "../../mixins/InfiniteScroll";
 import UpdateItem from "../../mixins/UpdateItem";
 import delete_item from "../../mixins/delete_item";
-import {mapGetters , mapActions} from 'vuex';
 import Job_info_view_box from "../../components/Modals/job_info_view_box";
 import Job_info_save_box from "../../components/Modals/job_info_save_box";
+import {mapGetters , mapActions} from 'vuex';
+
 export default {
   name: "index",
   layout:"admin",
@@ -84,12 +88,13 @@ export default {
   components:{
     Job_info_save_box,
     Job_info_view_box,
-    update_personal_data
+    update_personal_data,
   },
   methods:{
     ...mapActions({
       'all_jobs_actions':'dashboard/jobs/allDataAction',
-      'get_info_action':'dashboard/jobs/getInfoJob'
+      'get_info_action':'dashboard/jobs/getInfoJob',
+      'parents_action':'dashboard/jobs/parentsAction',
     }),
     search:function (){
       console.log('search');
@@ -101,22 +106,26 @@ export default {
       this.update_item(item);
       if(item != null) {
         this.get_info_action(item.id);
+      }else{
+        this.$store.commit('dashboard/jobs/SetItem',{});
       }
     }
   },
   mounted() {
     this.all_jobs_actions();
+    this.parents_action();
   },
   computed:{
     ...mapGetters({
       'jobs_data':'dashboard/jobs/getData',
       'jobs_total':'dashboard/jobs/getTotal',
-      'all_job_info_data':'dashboard/jobs/getItem'
+      'all_job_info_data':'dashboard/jobs/getItem',
+      'all_parents':'dashboard/jobs/getParents',
     })
   },
   data(){
     return {
-      dashboard_name:this.$route.path.split('/')[this.$route.path.split('/').length - 1]
+      dashboard_name:this.$route.path.split('/')[this.$route.path.split('/').length - 1],
     }
   },
 }

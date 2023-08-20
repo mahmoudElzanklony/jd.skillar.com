@@ -39,6 +39,7 @@ export default {
 
   },
 
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {src:'~/plugins/checkStyle.js',mode:'client'},
@@ -48,7 +49,7 @@ export default {
     {src:'~/plugins/tooltip_plugin',mode:'client'},
     {src:'~/plugins/axios'},
     {src:'~/plugins/loader',mode:'client'},
-
+    {src:'~/plugins/AutoCompleteTags',mode:'client'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

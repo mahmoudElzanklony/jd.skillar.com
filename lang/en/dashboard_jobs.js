@@ -13,6 +13,7 @@ export default {
   control:'Control',
   active:'Active',
   disabled:'Disabled',
+  more_filters:'More filters',
   filters:[
     {
       name:'Name',

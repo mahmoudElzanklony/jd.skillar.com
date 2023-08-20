@@ -81,8 +81,8 @@ $(document).ready(function (){
     console.log($(this).index());
     $(this).parent().find('.active').removeClass('active');
     $(this).addClass('active');
-    $('.modal .content > div').fadeOut();
-    $('.modal .content > div').eq($(this).index()).fadeIn();
+    $(this).parentsUntil('.modal').eq($(this).parentsUntil('.modal').length - 1).find('.content > div').fadeOut();
+    $(this).parentsUntil('.modal').eq($(this).parentsUntil('.modal').length - 1).find('.content > div').eq($(this).index()).fadeIn();
   });
 
   // control of variety of data up and down

@@ -71,7 +71,6 @@ export default {
     })
   },
   mounted() {
-    console.log('abc admin');
     this.current_page = this.$route.path.split('/')[this.$route.path.split('/').length - 1];
     for(let li of document.querySelectorAll('ul li')){
        if(li.children[1].href.indexOf(this.current_page) >= 0){

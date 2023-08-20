@@ -12,6 +12,7 @@ export default {
   control:'التحكم',
   active:'نشطة',
   disabled:'معطلة',
+  more_filters:'مزيد من الفلاتر',
   filters:[
     {
       name:'الاسم',
