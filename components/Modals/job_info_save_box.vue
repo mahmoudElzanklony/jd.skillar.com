@@ -10,10 +10,11 @@
             <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <ul class="list-types d-flex align-item-center justify-content-between mb-4" v-if="words['jobs_types_data']">
+            <ul class="list-types d-flex align-item-center justify-content-between mb-4 flex-wrap" v-if="words['jobs_types_data']">
               <li v-for="(i,index) in Object.values(words['jobs_types_data'])"
                   :key="index" :class="index == 0 ? 'active':''">{{ i }}
               </li>
+              <li>{{ words.principle_contracts }}</li>
             </ul>
             <div class="content" v-if="words['jobs_types_data']">
               <div :class="i" v-for="(i,index) in Object.keys(words['jobs_types_data'])" :key="index">
@@ -25,10 +26,10 @@
                       <div>
                         <label>{{ d['name'] }} : </label>
                         <input class="form-control" :name="d['input']"
-                               :type="d['type']" v-if="d['type'] == 'text'" :value="item != null ? item[d['input']]:''" required>
+                               :type="d['type']" v-if="d['type'] == 'text'" :value="item != null ? item[d['input']]:''" >
                         <textarea class="form-control" :name="d['input']" v-else-if="d['type'] == 'textarea'"
-                                  :value="item != null ? item[d['input']]:''" required>{{ item != null ? item[d['input']]:'' }}</textarea>
-                        <select v-else-if="d['type'] == 'select'" class="form-control" :name="d['input']" required>
+                                  :value="item != null ? item[d['input']]:''" >{{ item != null ? item[d['input']]:'' }}</textarea>
+                        <select v-else-if="d['type'] == 'select'" class="form-control" :name="d['input']" >
                           <option value="">{{ words['select_best_choice'] }}</option>
                           <option v-if="d.hasOwnProperty('toggle')" value="1"
                                   :selected="item != null && item[d['input']] == 1">{{ words.active }}</option>
@@ -47,6 +48,48 @@
                   <tags-inputs :table="'job_'+i" :data="item_info != null && item_info.hasOwnProperty(i) && item_info[i].length > 0 ? item_info[i].map((q)=>{ return {key:q['id'],value:q['ar_title']} }) : []"></tags-inputs>
 
                 </div>
+              </div>
+              <div class="contracts_inputs">
+
+                <div v-if="words">
+                  <div class="row" v-if="Object.keys(item).length == 0 || (Object.keys(item).length > 0 && item.hasOwnProperty('principle_contracts') &&  item['principle_contracts'].length == 0)">
+                    <div class="col-md-6 col-12 mb-2"
+                         v-for="(input,index) in words['principle_contracts_inputs']" :key="index">
+                      <label>{{ input['name'] }} : </label>
+                      <input class="form-control" :name="'job_principle_contracts['+input['input']+'][]'"
+                             :type="input['type']" v-if="input['type'] != 'textarea'"
+                             >
+                      <textarea class="form-control" :name="'job_principle_contracts['+input['input']+'][]'" v-else></textarea>
+
+                    </div>
+                  </div>
+                  <div v-else-if="item">
+                    <div class="row" v-for="(pci,key) in item['principle_contracts']" :key="key" :class="'tr_'+key">
+                      <input type="hidden" :name="'job_principle_contracts[id][]'" :value="pci['id']">
+                    <span class="red delete-icon-line"
+                          @click="delete_item('job_principle_contracts',pci['id'],'job_principle_contracts','.tr_'+key)"
+                          v-if="key > 0"><i class="bi bi-trash3"></i></span>
+                      <div class="col-md-6 col-12 mb-2"
+                           v-for="(input,index) in words['principle_contracts_inputs']" :key="index">
+                        <label>{{ input['name'] }} : </label>
+                        <input class="form-control" :name="'job_principle_contracts['+input['input']+'][]'"
+                               :type="input['type']" v-if="input['type'] != 'textarea'"
+                               :value="pci != null ? pci[input['input']]:''" >
+
+                        <textarea class="form-control" :name="'job_principle_contracts['+input['input']+'][]'" v-else
+                                  :value="pci != null ? pci[input['input']]:''" >{{  pci != null ? pci[input['input']]:'' }}</textarea>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-outline-primary copy_item"
+                        type="button"
+                        tag="div"
+                        tag_class="row"
+                        created_at=".contracts_inputs > div"
+                        search=".contracts_inputs > div > div.row:first-of-type">{{ words['add_item'] }}</button>
+
               </div>
             </div>
 
@@ -68,11 +111,12 @@
 <script>
 import WordsLang from "../../mixins/WordsLang";
 import TagsInputs from "../TagsInputs";
+import delete_item from "../../mixins/delete_item";
 import {mapActions} from 'vuex';
 export default {
   name: "job_info_save_box",
   props:['item','parents'],
-  mixins:[WordsLang],
+  mixins:[WordsLang,delete_item],
   mounted() {
 // Dynamically import component
   },

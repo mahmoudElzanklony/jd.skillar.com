@@ -986,6 +986,12 @@ table{
   }
 }
 
+.delete-icon-line{
+  font-size: $normal;
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
+}
 
 .swal2-container{
   z-index: 9999999999 !important;

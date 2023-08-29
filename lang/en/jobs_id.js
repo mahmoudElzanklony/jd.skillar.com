@@ -47,7 +47,7 @@ export default {
     },
     {
       name:'سياقة العمل',
-      link:'work_context',
+      link:'work_contexts',
     },
     {
       name:'الأهتمامات',

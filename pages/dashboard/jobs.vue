@@ -4,7 +4,7 @@
     <div class="container">
       <div>
       </div>
-      <form method="post" @submit.prevent="search">
+      <form method="post" name="filters" @submit.prevent="search">
         <div class="row" v-if="words.filters">
           <div class="col-lg-3 col-md-6 mb-2" v-for="i in words.filters">
             <div>
@@ -16,7 +16,7 @@
             <input type="submit" class="btn btn-primary w-100 position-relative top-3 mt-4" :value="words.search">
           </div>
         </div>
-        <p class="mb-0 blue cursor-pointer">{{ words['more_filters'] }}</p>
+        <p class="mb-0 blue cursor-pointer" data-bs-toggle="modal" data-bs-target="#job_info_filters_box">{{ words['more_filters'] }}</p>
       </form>
       <div class="users_data mt-4" v-if="words.table">
         <div class="container">
@@ -66,6 +66,7 @@
       </div>
       <job_info_view_box :item="all_job_info_data"></job_info_view_box>
       <job_info_save_box :item="all_job_info_data" :parents="all_parents"></job_info_save_box>
+      <job_info_filters_box></job_info_filters_box>
 
     </div>
   </div>
@@ -79,13 +80,16 @@ import UpdateItem from "../../mixins/UpdateItem";
 import delete_item from "../../mixins/delete_item";
 import Job_info_view_box from "../../components/Modals/job_info_view_box";
 import Job_info_save_box from "../../components/Modals/job_info_save_box";
+import filters_jobs_search from "../../mixins/filters_jobs_search";
 import {mapGetters , mapActions} from 'vuex';
+import Job_info_filters_box from "../../components/Modals/job_info_filters_box";
 
 export default {
   name: "index",
   layout:"admin",
-  mixins:[WordsLang,InfiniteScroll,UpdateItem,delete_item],
+  mixins:[WordsLang,InfiniteScroll,UpdateItem,delete_item,filters_jobs_search],
   components:{
+    Job_info_filters_box,
     Job_info_save_box,
     Job_info_view_box,
     update_personal_data,
@@ -97,8 +101,9 @@ export default {
       'parents_action':'dashboard/jobs/parentsAction',
     }),
     search:function (){
-      console.log('search');
-      var data  = new FormData(event.target);
+      var data = this.search_jobs(document.filters,document.more_filters)
+
+
       data.append('empty',true);
       this.all_jobs_actions(data)
     },

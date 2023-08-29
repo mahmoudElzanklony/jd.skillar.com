@@ -1,6 +1,7 @@
 import CurrentPageDetectPaginate from "../../plugins/CurrentPageDetectPaginate";
 import formValidation from "../../validation/formValidation";
 
+
 export const state = () => ({
   data: [],
   parents:[],
@@ -80,6 +81,8 @@ export const actions = {
         if(e.data.data.data.length == 0){
           commit('ChangeStatus',false);
         }
+      }).catch((e)=>{
+        console.log(e);
       }).finally(() => {
         commit('loader/updateLoaderMutation', false, {root: true});
       });
@@ -118,8 +121,17 @@ export const actions = {
   },
 
   async save_job_information({state,commit}){
-    commit('loader/updateLoaderMutation',true,{root:true});
     var target = event.target;
+    for(let input of $(target).find('.form-control')){
+       if(input.value.length == 0){
+         Toast.fire({
+           icon:'error',
+           title:localStorage.lang == 'ar' ? 'من فضلك قم بأدخال جميع الحقول قبل عملية الحفظ':'please complete all required inputs',
+         });
+         return false;
+       }
+    }
+    commit('loader/updateLoaderMutation',true,{root:true});
     var payload = new FormData(target);
     if(payload.has('id')){
       var url = '/jobs/'+payload.get('id');

@@ -28,6 +28,38 @@ export default  {
   description:'Description',
   note:'Note',
   sk_group:'Related to',
+  principle_contracts:'Principle Contracts',
+  add_item:'Add new item',
+  filter_searches:'Job Filters',
+  principle_contracts_inputs:[
+    {
+      name:'Name in arabic',
+      input:'ar_name',
+      type:'text',
+    },
+    {
+      name:'Name in english',
+      input:'en_name',
+      type:'text',
+    },
+    {
+      name:'Requirements in arabic',
+      input:'ar_requirements',
+      type:'textarea',
+    },
+    {
+      name:'Requirements in english',
+      input:'en_requirements',
+      type:'textarea',
+    },
+    {
+      name:'End date',
+      input:'end_date',
+      type:'date',
+    },
+  ],
+
+
 
   main_info_inputs:[
     {

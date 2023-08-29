@@ -20,12 +20,41 @@ export default  {
   select_best_choice:'اختر المناسب لك',
   phone:'رقم الهاتف',
   leave_password:'اترك كلمه المرور فارغة في حالة عدم تغييرها',
-
   title:'الاسم',
   ar_title:'الاسم بالعربي',
   en_title:'الاسم بالانجليزي',
   ar_desc:'الوصف بالعربي',
   en_desc:'الوصف بالانجليزي',
+  principle_contracts:'العقود المبدأية',
+  add_item:'اضافة عنصر جديد',
+  filter_searches:'فلاتر البحث',
+  principle_contracts_inputs:[
+    {
+      name:'الاسم بالعربي',
+      input:'ar_name',
+      type:'text',
+    },
+    {
+      name:'الاسم بالانجليزي',
+      input:'en_name',
+      type:'text',
+    },
+    {
+      name:'المتطلبات بالعربي',
+      input:'ar_requirements',
+      type:'textarea',
+    },
+    {
+      name:'المتطلبات بالانجليزي',
+      input:'en_requirements',
+      type:'textarea',
+    },
+    {
+      name:'تاريخ نهايه العقد',
+      input:'end_date',
+      type:'date',
+    },
+  ],
 
   modal_body_info:{
     ar_title:'الاسم بالعربي',

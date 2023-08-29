@@ -93,6 +93,6 @@ export default {
     }
   },
   router: {
-    middleware: ['auth_admin'],
+    middleware: ['auth_check'],
   }
 }

@@ -31,8 +31,9 @@ $(document).ready(function (){
           icon: 'success',
           title: localStorage.lang == 'ar'?'تمت عملية المسح بنجاح':'deleted operation done successfully'
         })
-        console.log(target);
-        console.log(target.hasClass('remove-element'));
+        if(target.attr('parent-until')){
+          target.parentsUntil('#__nuxt').eq([target.attr('parent-until')]).remove();
+        }
         if(target.hasClass('remove-element')){
            target.parent().parent().parent().remove();
         }
@@ -109,6 +110,23 @@ $(document).ready(function (){
       $(event.target).parent().addClass('active').siblings().removeClass('active')
     }else{
       $(event.target).addClass('active').siblings().removeClass('active')
+    }
+  });
+
+
+  // copy item
+  $('#__nuxt').on('click','.copy_item',function (){
+    var search = $(event.target).attr('search');
+    if($(search).length > 0){
+      var tag = $(event.target).attr('tag');
+      var tag_class = $(event.target).attr('tag_class');
+      var output = '<'+tag+' class="'+tag_class+'">';
+      output += '<span class="red delete-icon-line"><i class="bi bi-trash3 delete" parent-until="1"></i></span>';
+      output += $(search)[0].innerHTML;
+      output += '</'+tag+'>';
+    }
+    if(output){
+       $($(event.target).attr('created_at')).append(output);
     }
   });
 
