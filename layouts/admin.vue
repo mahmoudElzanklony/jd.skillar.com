@@ -3,40 +3,11 @@
     <div class="row">
       <div class="col-lg-2 col-md-4">
           <nav :key="current_page">
-            <nuxt-link tag="img" src="/images/logo.png" class="brand" to="/"></nuxt-link>
-            <ul>
-               <li>
-                 <span class="mrl-half"><i class="bi bi-house"></i></span>
-                 <nuxt-link to="/dashboard">{{ words.home }}</nuxt-link>
-               </li>
-               <li>
-                <span class="mrl-half"><i class="bi bi-group"></i></span>
-                <nuxt-link to="/dashboard/users">{{ words.users }}</nuxt-link>
-               </li>
-
-               <li>
-                <span class="mrl-half"><i class="bi bi-briefcase"></i></span>
-                <nuxt-link to="/dashboard/jobs">{{ words.jobs }}</nuxt-link>
-               </li>
-               <li>
-                <span class="mrl-half"><i class="bi bi-globe-americas"></i></span>
-                <nuxt-link to="/dashboard/countries">{{ words.countries }}</nuxt-link>
-               </li>
-               <li>
-                <span class="mrl-half"><i class="bi bi-pin-map"></i></span>
-                <nuxt-link to="/dashboard/cities">{{ words.cities }}</nuxt-link>
-               </li>
-               <li>
-                <span class="mrl-half"><i class="bi bi-file-earmark-text"></i></span>
-                <nuxt-link to="/dashboard/reports">{{ words.reports }}</nuxt-link>
-               </li>
-               <li>
-                <span class="mrl-half"><i class="bi bi-bell"></i></span>
-                <nuxt-link to="/dashboard/notifications">{{ words.notifications }}</nuxt-link>
-               </li>
-               <li>
-                <span class="mrl-half"><i class="bi bi-gear"></i></span>
-                <nuxt-link to="/dashboard/settings">{{ words.settings }}</nuxt-link>
+            <nuxt-link tag="img" src="/images/logo.png" class="brand cursor-pointer" to="/"></nuxt-link>
+            <ul v-if="words['links']">
+               <li v-for="(i,index) in words.links">
+                 <span class="mrl-half"><i :class="i['icon']"></i></span>
+                 <nuxt-link :to="'/dashboard'+i['path']">{{ i['name'] }}</nuxt-link>
                </li>
 
              </ul>

@@ -38,6 +38,7 @@ export const actions = {
     console.log('delete user data');
     localStorage.removeItem('user_info');
     localStorage.removeItem('token');
+    sessionStorage.clear();
     document.cookie = "token=; expires=Thu, 01 Jan 1990 00:00:00 UTC; path=/;";
     document.cookie = "user_info=; expires=Thu, 01 Jan 1990 00:00:00 UTC; path=/;";
     window.location = '/auth/login';
@@ -57,6 +58,16 @@ export const actions = {
       }
     }).catch((e)=>{
       dispatch('deleteUserData')
+    })
+  },
+
+
+  async logoutAction({state,commit,dispatch}){
+    return this.$axios.post('logout').then((e)=>{
+      console.log('logout.......................');
+      if(e.data.status == 200){
+        dispatch('deleteUserData')
+      }
     })
   }
 

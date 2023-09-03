@@ -1,22 +1,22 @@
 export default {
-  details_position:'تفاصيل الوظيفة',
-  copy:'نسخ',
-  show_less:'عرض اقل',
-  show_more:'عرض اكثر',
-  copied_success:'تمت عملية النسخ بنجاح',
-  importance:'الأهمية',
-  mastery:'الاتقان',
+  details_position:'Job description',
+  copy:'Copy',
+  show_less:'Show less',
+  show_more:'Show more',
+  copied_success:'Copied process done successfully',
+  importance:'Importance',
+  mastery:'Mastery',
   buttons:[
     {
-      name:'نسخ',
+      name:'Copy',
       icon:'bi bi-clipboard-check',
     },
     {
-      name:'مشاركة',
+      name:'Share',
       icon:'bi bi-share',
     },
     {
-      name:'طباعة',
+      name:'Print',
       icon:'bi bi-printer',
     },
     /*{
@@ -26,39 +26,39 @@ export default {
   ],
   task_bar:[
     {
-      name:'مهام',
+      name:'Tasks',
       link:'tasks',
     },
     {
-      name:'المعرفة',
+      name:'Knowledge',
       link:'knowledge',
     },
     {
-      name:'المهارات',
+      name:'Skills',
       link:'skills',
     },
     {
-      name:'القدرات',
+      name:'Abilities',
       link:'abilities',
     },
     {
-      name:'أنشطة العمل',
+      name:'Work Activities',
       link:'work_activities',
     },
     {
-      name:'سياقة العمل',
+      name:'Work Contexts',
       link:'work_contexts',
     },
     {
-      name:'الأهتمامات',
+      name:'Interests',
       link:'interests',
     },
     {
-      name:'قيم العمل',
+      name:'Work Values',
       link:'work_values',
     },
     {
-      name:'معبر',
+      name:'Cross Walk',
       link:'cross_walk',
     },
   ],

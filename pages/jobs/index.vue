@@ -7,7 +7,7 @@
           <span>{{ getTotal }}</span>
           <span style="border-bottom: 1px solid gray">{{ words.job_description }}</span>
        </h2>
-       <form class="filters-input-form infinite_scroll_form" @submit.prevent="SearchNames">
+       <form name="filters" class="filters-input-form infinite_scroll_form" @submit.prevent="SearchNames">
           <div class="row">
              <div class="col-lg-3 col-md-6 position-relative mobile-margin-bottom">
                <div class="d-flex align-items-center justify-content-between border-side">
@@ -34,7 +34,9 @@
              </div>
           </div>
        </form>
-     </div>
+       <p class="mb-0 blue cursor-pointer" data-bs-toggle="modal" data-bs-target="#job_info_filters_box">{{ words['more_filters'] }}</p>
+
+      </div>
      </div>
      <div class="jobs_data mt-4">
        <div class="container">
@@ -48,6 +50,8 @@
          </div>
        </div>
      </div>
+    <job_info_filters_box></job_info_filters_box>
+
   </div>
 </template>
 
@@ -55,10 +59,13 @@
 import WordsLang from "../../mixins/WordsLang";
 import InfiniteScroll from "../../mixins/InfiniteScroll";
 import {mapGetters,mapActions} from 'vuex';
+import Job_info_filters_box from "../../components/Modals/job_info_filters_box";
+import filters_jobs_search from "../../mixins/filters_jobs_search";
 
 export default {
   name: 'jobs',
-  mixins:[WordsLang,InfiniteScroll],
+  components: {Job_info_filters_box},
+  mixins:[WordsLang,InfiniteScroll,filters_jobs_search],
   data(){
     return {
       data: [],
@@ -72,7 +79,9 @@ export default {
         'getJobsByName':'jobs/getJobsByName',
     }),
     SearchNames(){
-        var data = new FormData(document.querySelector('form'));
+
+        var data = this.search_jobs(document.filters,document.more_filters)
+
         this.current_page = 2;
         this.getJobsByName(data);
     }

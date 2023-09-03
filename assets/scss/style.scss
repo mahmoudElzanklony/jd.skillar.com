@@ -978,6 +978,7 @@ table{
 
 
 .modal{
+  z-index: 9999999999;
   img{
     height: 100px;
     display: block;
@@ -995,4 +996,9 @@ table{
 
 .swal2-container{
   z-index: 9999999999 !important;
+}
+
+.modal-body{
+  max-height: 500px;
+  overflow: auto;
 }

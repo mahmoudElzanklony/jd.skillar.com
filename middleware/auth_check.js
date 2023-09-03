@@ -12,8 +12,10 @@ export default function ({ store, redirect, route , req}) {
 
   let user_info = process.client ?
     localStorage.getItem('user_info'):cookie.parse(req.headers.cookie || '').user_info;
-
+  console.log(process.client);
   if(process.client){
+    console.log(process.client);
+    console.log('abc');
     if(!(sessionStorage.hasOwnProperty('authenticated'))){
       store.dispatch('auth/login/validateAuthAction');
     }

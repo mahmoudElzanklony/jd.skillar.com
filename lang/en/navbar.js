@@ -11,4 +11,6 @@ export default  {
   chat:'Chat',
   notifications:'Notifications',
   logout:'Logout',
+  dashboard:'Dashboard',
+
 };

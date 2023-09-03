@@ -188,6 +188,7 @@ export default {
   mounted() {
     var data = new FormData();
     data.append('table',this.dashboard_name);
+    data.append('empty',true);
     data.append('admin',true);
     this.all_data(data);
     this.payload_form['table'] = this.dashboard_name;

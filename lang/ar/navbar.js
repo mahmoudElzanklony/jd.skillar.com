@@ -11,4 +11,6 @@ export default  {
   chat:'المحادثات',
   notifications:'الاشعارات',
   logout:'تسجيل الخروج',
+  dashboard:'لوحة الادارة',
+
 };

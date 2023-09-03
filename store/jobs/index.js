@@ -78,6 +78,7 @@ export const actions = {
   async getJobsByName({commit},payload){
     return this.$axios.post('jobs/names',payload).then((e) => {
       commit('InitializeData', e.data.data);
+      commit('SetTotal', e.data.meta.total);
       commit('ChangeStatus',true);
     }).finally(() => {
       commit('loader/updateLoaderMutation', false, {root: true});

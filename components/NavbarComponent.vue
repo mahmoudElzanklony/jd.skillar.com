@@ -10,34 +10,34 @@
       <div class="collapse navbar-collapse mrl-reverse-15" id="navbarSupportedContent">
         <ul class="navbar-nav mb-2 mb-lg-0 align-items-md-center position-relative">
           <li class="nav-item link mrl-1">
-            <nuxt-link to="/" class="nav-link line-hover" aria-current="page" href="#">
-              {{ words.home }}
-            </nuxt-link>
+            <nuxt-link to="/" class="nav-link line-hover">{{ words.home }}</nuxt-link>
           </li>
           <li class="nav-item link mrl-1">
-            <nuxt-link to="#" class="nav-link line-hover" href="#">{{ words.about }}</nuxt-link>
+            <nuxt-link to="/about" class="nav-link line-hover" href="#">{{ words.about }}</nuxt-link>
           </li>
-          <li class="nav-item link mrl-1">
-            <nuxt-link class="nav-link line-hover" to="/best-companies">{{ words.companies_rank }}</nuxt-link>
-          </li>
-          <li class="nav-item link mrl-1">
-            <nuxt-link class="nav-link line-hover" to="/colleagues">{{ words.colleagues }}</nuxt-link>
-          </li>
+
           <li class="nav-item link mrl-1">
             <nuxt-link to="/jobs" class="nav-link line-hover">{{ words.jobs }}</nuxt-link>
           </li>
+          <li class="nav-item link mrl-1" v-if="admin_status">
+            <nuxt-link to="/dashboard" class="nav-link line-hover">{{ words.dashboard }}</nuxt-link>
+          </li>
+
         </ul>
 
         <ul class="navbar-nav mb-2 mb-lg-0 align-items-md-center">
-          <li class="nav-item mrl-1">
+          <li class="nav-item mrl-1" v-if="auth_status == false">
             <nuxt-link to="/auth/register" class="nav-link btn-bk-primary">{{ words.register }}</nuxt-link>
+          </li>
+          <li class="nav-item mrl-1" v-else @click="logoutAction">
+            <nuxt-link to="/auth/register" class="nav-link btn-bk-primary">{{ words.logout }}</nuxt-link>
           </li>
           <li class="nav-item mrl-1">
             <button class="nav-link btn btn-outline-primary" @click="changeLang">
               {{ another_lang }}
             </button>
           </li>
-          <li class="user_profile ">
+          <li class="user_profile " v-if="false">
             <ul class="dots-action cursor-pointer d-inline-block">
               <li class="dots">
                 <img src="/images/users/2.webp" class="cursor-pointer">
@@ -87,16 +87,22 @@
 
 <script>
 import WordsLang from "../mixins/WordsLang";
+import {mapActions} from 'vuex';
 export default {
   name: "NavbarComponent",
   data(){
     return {
       file_name:'navbar',
       another_lang:'',
+      auth_status:false,
+      admin_status:false,
     }
   },
   mixins:[WordsLang],
   methods:{
+    ...mapActions({
+      'logoutAction':'auth/login/logoutAction',
+    }),
     changeLang(){
       if(localStorage.getItem('lang') == null || localStorage.getItem('lang') == 'ar'){
           localStorage.setItem('lang','en');
@@ -109,6 +115,17 @@ export default {
     },
   },
   mounted() {
+      if(sessionStorage.hasOwnProperty('authenticated')){
+        this.auth_status = true;
+      }
+    if(localStorage.hasOwnProperty('user_info')){
+      var user_info = JSON.parse(localStorage.user_info);
+      if(user_info.role.name == 'admin'){
+        this.admin_status = true;
+      }
+    }
+
+
       if(localStorage.getItem('lang') == null || localStorage.getItem('lang') == 'ar'){
           this.another_lang = 'English';
       }else{

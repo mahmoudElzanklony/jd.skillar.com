@@ -33,7 +33,7 @@ export default {
     },
   ],
 
-
+  control:'Control',
   table:{
     username:'Username',
     email:'Email',

@@ -88,7 +88,7 @@
                         tag="div"
                         tag_class="row"
                         created_at=".contracts_inputs > div"
-                        search=".contracts_inputs > div > div.row:first-of-type">{{ words['add_item'] }}</button>
+                        search=".contracts_inputs > div > div > div.row:first-of-type">{{ words['add_item'] }}</button>
 
               </div>
             </div>

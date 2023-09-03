@@ -148,7 +148,9 @@ export default {
   mounted() {
     if(this.dashboard_name == 'countries'){
       this.map_columns = 'country_modal';
-      this.country_modal_action();
+      var data = new FormData();
+      data.append('empty',true);
+      this.country_modal_action(data);
     }else{
       this.map_columns = 'city_modal';
     }

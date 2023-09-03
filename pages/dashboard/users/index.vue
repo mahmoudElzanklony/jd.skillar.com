@@ -78,7 +78,9 @@ export default {
     },
   },
   mounted() {
-    this.all_users_actions();
+    var data = new FormData();
+    data.append('empty',true);
+    this.all_users_actions(data);
   },
   computed:{
     ...mapGetters({
