@@ -40,7 +40,7 @@
                   </div>
                   <p class="mb-2">
                     <span>{{ words.you_have_not_already_account }}</span>
-                    <nuxt-link to="/auth/register">{{ words.register }}</nuxt-link>
+                    <a href="/auth/register">{{ words.register }}</a>
                   </p>
                 </form>
               </div>

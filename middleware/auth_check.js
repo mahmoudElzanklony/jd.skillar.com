@@ -21,13 +21,13 @@ export default function ({ store, redirect, route , req}) {
     }
 
   }
-  if (!(token && user_info)) {
+  /*if (!(token && user_info)) {
     if(route.name == null || route.name.split('register')[1] != undefined){
       return redirect('/auth/register')
     }else {
       return redirect('/auth/login')
     }
-  }
+  }*/
 
   if(route.path.indexOf('dashboard') >= 0){
     if(JSON.parse(user_info).role.name != 'admin'){

@@ -959,9 +959,21 @@ table{
 
 
 @media print {
-  nav,footer{
+  footer,.side-bar{
     display: none;
     visibility: hidden;
+    height: 0px;
+  }
+  nav{
+    box-shadow: none;
+    border: none;
+  }
+  nav #navbarSupportedContent{
+    display: none;
+    height: 0px;
+  }
+  .current_page{
+    margin-top: 0px;
   }
   .main-data-header{
     div{
@@ -976,7 +988,14 @@ table{
 
 
 
-
+.hover-white{
+  &:hover{
+    color: white;
+  }
+  &:hover span{
+    color:white;
+  }
+}
 .modal{
   z-index: 9999999999;
   img{

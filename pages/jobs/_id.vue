@@ -18,11 +18,13 @@
                <div class="d-flex align-items-center justify-content-between">
                   <p class="mb-2 fw-bold">{{ words.details_position }}</p>
                   <div class="buttons">
-                    <button class="btn-bk-primary d-inline-flex align-items-center mrl-reverse-15 mb-2"
+                    <button
+                            v-for="(btn,index) in words.buttons" :key="index"
+                            :class="'btn-bk-primary d-inline-flex align-items-center mb-2 '+(index > 0 ? 'mrl-reverse-15':'')  "
                             :copy_target="btn['icon'] == 'bi bi-clipboard-check' ? true:false"
                             :data-bs-toggle="btn['icon'] == 'bi bi-share' ?'modal':''"
                             :data-bs-target="btn['icon'] == 'bi bi-share' ? '#shareModal':''"
-                      v-for="(btn,index) in words.buttons" :key="index"
+
                     >
                       <span class="p-relative mrl-1 " >{{ btn['name'] }}</span>
                       <span><i :class="'position-relative top-1'+btn.icon"></i></span>
@@ -85,18 +87,25 @@
               </div>
             </div>
             <div class="col-lg-3 col-md-6 col-12 mb-2">
-               <div class="side-bar">
+               <div class="side-bar h-100">
                   <ul>
                     <li v-for="(i,index) in words.task_bar"  :class="'mb-3 '+(index == 0 ? 'active':'')" :key="index">
                       <nuxt-link :to="'#'+i['link']">{{ i['name'] }}</nuxt-link>
                     </li>
                   </ul>
+                  <button class="mt-5 btn btn-outline-primary w-100 hover-white" data-bs-toggle="modal"
+                          data-bs-target="#feedback">
+                    <span class="blue mrl-half position-relative top-1"><i class="bi bi-card-text"></i></span>
+                    <span class="blue">{{ words['send_feedback'] }}</span>
+                  </button>
+
                </div>
             </div>
           </div>
         </div>
     </div>
     <share-component></share-component>
+    <send_feedback :title="words['send_feedback']"></send_feedback>
 
   </div>
 </template>
@@ -107,10 +116,11 @@ import CopyContent from "../../mixins/CopyContent";
 import GeneratePDF from "../../mixins/GeneratePDF";
 import ShareComponent from "../../components/ShareComponent";
 import {mapGetters,mapActions} from 'vuex';
+import Send_feedback from "../../components/Modals/send_feedback";
 
 export default {
   name: '_id',
-  components: {ShareComponent},
+  components: {Send_feedback, ShareComponent},
   mixins:[WordsLang,CopyContent,GeneratePDF],
   asyncData({store,route}){
      if(route.params){

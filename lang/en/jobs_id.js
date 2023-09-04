@@ -62,4 +62,6 @@ export default {
       link:'cross_walk',
     },
   ],
+  send_feedback:'Send Feedback',
+
 }

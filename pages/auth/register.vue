@@ -91,7 +91,7 @@
 
                 <p class="mb-2">
                   <span>{{ words.you_have_already_account }}</span>
-                  <nuxt-link to="/auth/login">{{ words.login }}</nuxt-link>
+                  <a href="/auth/login">{{ words.login }}</a>
                 </p>
               </form>
             </div>

@@ -14,9 +14,11 @@
 
 import NavbarComponent from "../components/NavbarComponent";
 import FooterComponent from "../components/FooterComponent";
+import text_editor from "../mixins/text_editor";
 import {mapGetters} from 'vuex';
 export default {
   name: "default",
+  mixins:[text_editor],
   computed:{
     ...mapGetters({
       'loader_status':'loader/getLoaderGetter',
