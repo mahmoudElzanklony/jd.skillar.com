@@ -9,6 +9,9 @@
             <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            <p class="d-flex justify-content-end">
+              <span class="blue cursor-pointer" @click="clear_tags">{{ words.clear_filters }}</span>
+            </p>
             <div class="content" v-if="words['jobs_types_data']">
               <div :class="i" v-for="(i,index) in Object.keys(words['jobs_types_data'])" :key="index">
 
@@ -56,7 +59,13 @@ export default {
     }
   },
   methods:{
-
+    clear_tags:function(){
+       for (let com of this.$children){
+         if(com.data.length > 0){
+            com.data = [];
+         }
+       }
+    }
   },
   watch:{
 

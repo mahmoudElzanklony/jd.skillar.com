@@ -58,6 +58,11 @@ export default  {
       icon:'bi bi-suit-heart',
     },
     {
+      name:'Knowledge',
+      path:'/types/knowledge',
+      icon:'bi bi-info-square',
+    },
+    {
       name:'Competencies',
       path:'/types/competencies',
       icon:'bi bi-layers',

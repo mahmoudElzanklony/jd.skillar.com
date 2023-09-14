@@ -19,14 +19,15 @@
           <li class="nav-item link mrl-1">
             <nuxt-link to="/jobs" class="nav-link line-hover">{{ words.jobs }}</nuxt-link>
           </li>
-          <li class="nav-item link mrl-1" v-if="admin_status">
+          <li class="nav-item link mrl-1"
+              v-if="$auth.loggedIn && $auth.$state.user.hasOwnProperty('role') && $auth.$state.user.role.name == 'admin'">
             <nuxt-link to="/dashboard" class="nav-link line-hover">{{ words.dashboard }}</nuxt-link>
           </li>
 
         </ul>
 
         <ul class="navbar-nav mb-2 mb-lg-0 align-items-md-center">
-          <li class="nav-item mrl-1" v-if="auth_status == false">
+          <li class="nav-item mrl-1" v-if="showRegisterLink">
             <nuxt-link to="/auth/register" class="nav-link btn-bk-primary">{{ words.register }}</nuxt-link>
           </li>
           <li class="nav-item mrl-1" v-else @click="logoutAction">
@@ -87,7 +88,7 @@
 
 <script>
 import WordsLang from "../mixins/WordsLang";
-import {mapActions} from 'vuex';
+import {mapActions,mapGetters} from 'vuex';
 export default {
   name: "NavbarComponent",
   data(){
@@ -96,6 +97,15 @@ export default {
       another_lang:'',
       auth_status:false,
       admin_status:false,
+      showRegisterLink: false,
+    }
+  },
+  computed:{
+    ...mapGetters({
+      'auth_check':'auth/login/get_auth_user_validation'
+    }),
+    shouldShowRegisterLink() {
+      return !this.$store.state.auth.loggedIn
     }
   },
   mixins:[WordsLang],
@@ -103,6 +113,9 @@ export default {
     ...mapActions({
       'logoutAction':'auth/login/logoutAction',
     }),
+    updateRegisterLinkVisibility() {
+      this.showRegisterLink = !this.$store.state.auth.loggedIn
+    },
     changeLang(){
       if(localStorage.getItem('lang') == null || localStorage.getItem('lang') == 'ar'){
           localStorage.setItem('lang','en');
@@ -115,9 +128,11 @@ export default {
     },
   },
   mounted() {
-      if(sessionStorage.hasOwnProperty('authenticated')){
+    this.updateRegisterLinkVisibility()
+    this.$store.subscribe(this.updateRegisterLinkVisibility)
+    if(sessionStorage.hasOwnProperty('authenticated')){
         this.auth_status = true;
-      }
+    }
     if(localStorage.hasOwnProperty('user_info')){
       var user_info = JSON.parse(localStorage.user_info);
       if(user_info.role.name == 'admin'){

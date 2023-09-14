@@ -28,6 +28,7 @@ export default  {
   principle_contracts:'العقود المبدأية',
   add_item:'اضافة عنصر جديد',
   filter_searches:'فلاتر البحث',
+  clear_filters:'مسح الفلاتر',
   principle_contracts_inputs:[
     {
       name:'الاسم بالعربي',
@@ -146,7 +147,7 @@ export default  {
     skills:'المهارات',
     interests:'الاهتمامات',
     knowledge:'المعرفة',
-    competencies:'الكفائات',
+    competencies:'الكفاءات',
     tasks:'المهمات',
     educations:'التعليم',
     abilities:'القدرات',

@@ -6,11 +6,9 @@ export default {
   copied_success:'تمت عملية النسخ بنجاح',
   importance:'الأهمية',
   mastery:'الاتقان',
+  open_all_sections:'فتح جميع الاقسام',
+  close_all_sections:'اغلاق جميع الاقسام',
   buttons:[
-    {
-      name:'نسخ',
-      icon:'bi bi-clipboard-check',
-    },
     {
       name:'مشاركة',
       icon:'bi bi-share',
@@ -54,7 +52,7 @@ export default {
       link:'work_activities',
     },
     {
-      name:'سياقة العمل',
+      name:'سياق العمل',
       link:'work_contexts',
     },
     {

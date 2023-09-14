@@ -208,7 +208,7 @@ export default {
   data(){
     return {
       dashboard_name:this.$route.path.split('/')[this.$route.path.split('/').length - 1],
-      valid_pages:['abilities','certificates','educations','interests','competencies'
+      valid_pages:['abilities','certificates','educations','interests','competencies','knowledge'
         ,'references','skills_groups','work_activities','work_contexts','work_values'],
       payload_form:{}
     }

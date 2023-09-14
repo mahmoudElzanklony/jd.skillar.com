@@ -9,7 +9,7 @@ export default {
     educations:'التعليم',
     interests:'الاهتمامات',
     certificates:'الشهادات',
-    competencies:'الكفائات',
+    competencies:'الكفاءات',
     references:'المراجع',
     skills_groups:'مجموعات المهارات',
     work_activities:'أنشطة العمل',

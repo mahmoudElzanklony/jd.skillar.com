@@ -70,6 +70,7 @@ export const actions = {
 
     var page = CurrentPageDetectPaginate(payload);
     if(state.status) {
+      payload.append('admin',true);
       return this.$axios.post('titledesc' + page, payload).then((e) => {
         commit('UpdateData', e.data.data);
         commit('SetTotal',e.data.total);

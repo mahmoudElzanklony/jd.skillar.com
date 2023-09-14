@@ -31,6 +31,8 @@ export default  {
   principle_contracts:'Principle Contracts',
   add_item:'Add new item',
   filter_searches:'Job Filters',
+  clear_filters:'Clear filters',
+
   principle_contracts_inputs:[
     {
       name:'Name in arabic',

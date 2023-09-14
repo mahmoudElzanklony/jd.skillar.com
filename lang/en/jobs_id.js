@@ -6,11 +6,9 @@ export default {
   copied_success:'Copied process done successfully',
   importance:'Importance',
   mastery:'Mastery',
+  open_all_sections:'Open  all sections',
+  close_all_sections:'Close all sections',
   buttons:[
-    {
-      name:'Copy',
-      icon:'bi bi-clipboard-check',
-    },
     {
       name:'Share',
       icon:'bi bi-share',

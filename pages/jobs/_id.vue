@@ -15,9 +15,12 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-9 col-md-6 col-12 mb-2 mt-2">
-               <div class="d-flex align-items-center justify-content-between">
-                  <p class="mb-2 fw-bold">{{ words.details_position }}</p>
-                  <div class="buttons">
+               <div class="d-flex align-items-center justify-content-between buttons">
+                  <button class="btn-bk-primary d-inline-flex align-items-center" status="open" @click="toggle_all_sections">
+                    <span class="p-relative mrl-1 ">{{ words.close_all_sections }}</span>
+                    <span><i class="position-relative top-1 bi-arrow-down-up"></i></span>
+                  </button>
+                  <div>
                     <button
                             v-for="(btn,index) in words.buttons" :key="index"
                             :class="'btn-bk-primary d-inline-flex align-items-center mb-2 '+(index > 0 ? 'mrl-reverse-15':'')  "
@@ -32,7 +35,7 @@
                   </div>
                </div>
                <div class="data-table" v-if="words.job_features">
-                  <table class="table table-bordered table-hover">
+                  <table class="table table-bordered table-hover" v-if="false">
                     <thead>
                       <tr></tr>
                     </thead>
@@ -56,7 +59,7 @@
                            <span class="gray">{{ words.copy }}</span>
                          </p>
                          <p class="mb-0 mrl-reverse-15 cursor-pointer" @click="show_more_less">
-                           <span class="gray"><i class="bi bi-chevron-down position-relative top-3"></i></span>
+                           <span class="gray"><i class="bi bi-chevron-up position-relative top-3"></i></span>
                            <span class="gray">{{ words.show_less }}</span>
                          </p>
                        </div>
@@ -70,7 +73,7 @@
                         <p class="normal gray"
                            v-if="item.hasOwnProperty('skill')">{{ item['skill']['description'] }}</p>
 
-                        <div class="skill d-flex justify-content-between" v-if="item.hasOwnProperty('skill')">
+                        <div class="skill d-flex justify-content-between" v-if="item.hasOwnProperty('skill') && false">
                           <div>
                             <span class="gray fw-bold mrl-half">{{ words.importance }} : </span>
                             <span class="gray">{{ item.importance }}</span>
@@ -89,11 +92,11 @@
             <div class="col-lg-3 col-md-6 col-12 mb-2">
                <div class="side-bar h-100">
                   <ul>
-                    <li v-for="(i,index) in words.task_bar"  :class="'mb-3 '+(index == 0 ? 'active':'')" :key="index">
-                      <nuxt-link :to="'#'+i['link']">{{ i['name'] }}</nuxt-link>
+                    <li @click="go_to_section" v-for="(i,index) in words.task_bar"  :class="'mb-3 '+(index == 0 ? 'active':'')" :key="index">
+                      <nuxt-link :to="'#'+i['link']" >{{ i['name'] }}</nuxt-link>
                     </li>
                   </ul>
-                  <button class="mt-5 btn btn-outline-primary w-100 hover-white" data-bs-toggle="modal"
+                  <button v-if="false" class="mt-5 btn btn-outline-primary w-100 hover-white" data-bs-toggle="modal"
                           data-bs-target="#feedback">
                     <span class="blue mrl-half position-relative top-1"><i class="bi bi-card-text"></i></span>
                     <span class="blue">{{ words['send_feedback'] }}</span>
@@ -144,13 +147,18 @@ export default {
   mounted() {
     var com = this;
     setTimeout(()=>{
-      document.querySelector('.buttons button[copy_target=true]').addEventListener('click', function () {
+      /*document.querySelector('.buttons button[copy_target=true]').addEventListener('click', function () {
         var copyBoxElement = document.querySelector('body');
         com.copy_content(copyBoxElement);
-      })
+      })*/
 
-      document.querySelector('.buttons button:nth-of-type(3)').addEventListener('click', function () {
-         window.print();
+      document.querySelector('.buttons button:nth-of-type(2)').addEventListener('click', function () {
+        $('.buttons > button').attr('status','close');
+        $('.buttons > button').click()
+        console.log('print proces----------->');
+        setTimeout(()=>{
+          window.print();
+        },1000);
       })
 
      /* document.querySelector('.buttons button:nth-of-type(4)').addEventListener('click', function () {
@@ -166,19 +174,63 @@ export default {
   },
   methods:{
     show_more_less(){
-      if($(event.target).parent().find('i').hasClass('bi bi-chevron-down')){
-        $(event.target).parent().find('i').removeClass('bi bi-chevron-down').addClass('bi bi-chevron-up')
-      }else{
-        $(event.target).parent().find('i').removeClass('bi bi-chevron-up').addClass('bi bi-chevron-down')
+      var com = this;
+      var parent = $(event.target).parent();
+      if(event.target.tagName.toLocaleLowerCase() == 'i'){
+         parent = $(event.target).parent().parent()
       }
-      console.log($(event.target).parentsUntil('.job-data').last());
+      if($(event.target).parent().find('i').hasClass('bi bi-chevron-up')){
+        parent.find('i').removeClass('bi bi-chevron-up').addClass('bi bi-chevron-down')
+        parent.find('span:last-of-type').html(com.words['show_more']);
+      }else{
+        parent.parent().find('i').removeClass('bi bi-chevron-down').addClass('bi bi-chevron-up');
+        parent.parent().find('span:last-of-type').html(com.words['show_less']);
+      }
       $(event.target).parentsUntil('.job-data').last().find('.main-data-body').slideToggle();
+    },
+    toggle_all_sections:function (){
+      var ev = event.target;
+      var com = this;
+      if(event.target.tagName.toLocaleLowerCase() == 'span'){
+        ev = event.target.parentElement;
+      }else if(event.target.tagName.toLocaleLowerCase() == 'i'){
+        ev = event.target.parentElement.parentElement;
+      }
+      if(ev.getAttribute('status') == 'open') {
+        $('.main-data .main-data-body').slideUp();
+        ev.setAttribute('status','close');
+        $('.main-data .main-data-header div p:last-of-type span:last-of-type').html(com.words['show_more']);
+        $('.main-data .main-data-header div p:last-of-type span:first-of-type i').removeClass('bi bi-chevron-up').addClass('bi bi-chevron-down');
+        $(ev).find('span:first-of-type').html(com.words['open_all_sections']);
+      }else{
+        $('.main-data .main-data-body').slideDown();
+        ev.setAttribute('status','open');
+        $('.main-data .main-data-header div p:last-of-type span:last-of-type').html(com.words['show_less']);
+        $('.main-data .main-data-header div p:last-of-type span:first-of-type i').removeClass('bi bi-chevron-down').addClass('bi bi-chevron-up');
+        $(ev).find('span:first-of-type').html(com.words['close_all_sections']);
+
+      }
     },
     copy() {
       // Get the paragraph element
-      var copyBoxElement = $(event.target).parentsUntil('.job-data').last().find('.main-data-body p')[0];
+      var copyBoxElement = $(event.target).parentsUntil('.job-data').last().find('.main-data-body')[0];
+
       this.copy_content(copyBoxElement);
     },
+    go_to_section(){
+      var com = this;
+      if(event.target.tagName.toLocaleLowerCase() == 'a'){
+       var a_link = $(event.target).attr('href').split('#');
+      }else{
+        var a_link = $(event.target).find('a').attr('href').split('#');
+      }
+      console.log(a_link);
+      console.log($('#'+a_link[1]+' .main-data-body'));
+
+      $('#'+a_link[1]+' .main-data-body').slideDown();
+      $('#'+a_link[1]).find('.main-data-header div p:last-of-type i').removeClass('bi bi-chevron-down').addClass('bi bi-chevron-up');
+      $('#'+a_link[1]).find('.main-data-header div p:last-of-type span:last-of-type').html(com.words['show_less']);
+    }
   },
   comments:{ShareComponent},
 }

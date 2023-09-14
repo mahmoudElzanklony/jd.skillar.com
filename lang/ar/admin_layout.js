@@ -58,6 +58,11 @@ export default  {
       icon:'bi bi-suit-heart',
     },
     {
+      name:'المعرفة',
+      path:'/types/knowledge',
+      icon:'bi bi-info-square',
+    },
+    {
       name:'الاهتمامات',
       path:'/types/competencies',
       icon:'bi bi-layers',

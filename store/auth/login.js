@@ -1,12 +1,24 @@
 import formValidation from '/validation/formValidation';
 export const state = () => ({
-  user_info: {}
+  user_info: {},
+  auth_user_validation:null,
 })
+
+
+
+export const getters = {
+  get_auth_user_validation(state) {
+    return state.auth_user_validation
+  },
+}
 
 export const mutations = {
   InitializeData(state,payload){
     state.user_info = payload;
-  }
+  },
+  UpdateAuthUserValidation(state,payload){
+     state.auth_user_validation = payload
+  },
 }
 
 
@@ -14,8 +26,25 @@ export const actions = {
   async loginAction({ state,commit }) {
     let router = this.$router;
     var target = event.target;
-    commit('loader/updateLoaderMutation',true,{root:true});
-    return this.$axios.post('login',new FormData(target)).then((e)=>{
+    // Clear the redirect path
+    this.$auth.$storage.setUniversal('redirect', null)
+   // commit('loader/updateLoaderMutation',true,{root:true});
+    try {
+       await this.$auth.loginWith('local', {
+        data: new FormData(target)
+      })
+      console.log(this.state.auth.user)
+      await router.push('/');
+      //this.$auth.setUser(response.data.user)
+    }catch {
+      Toast.fire({
+        icon:'error',
+        title:'error in auth process'
+      });
+      await router.push('/auth/login');
+      return false;
+    }
+    /*return this.$axios.post('login',new FormData(target)).then((e)=>{
       console.log(e.data);
       formValidation(e.data,target,'/',true);
       if(e.data.status == 200){
@@ -31,7 +60,7 @@ export const actions = {
       }
     }).finally(() => {
       commit('loader/updateLoaderMutation',false,{root:true});
-    });
+    });*/
   },
 
   async deleteUserData(){
@@ -47,6 +76,10 @@ export const actions = {
 
   async validateAuthAction({state,commit,dispatch}){
     var data = new FormData();
+
+    if(!(localStorage.hasOwnProperty('token'))){
+      return false;
+    }
     if(localStorage.hasOwnProperty('token')){
       data.append('token',localStorage.token);
     }
@@ -55,9 +88,12 @@ export const actions = {
     }).then((e)=>{
       if(e.status == 200){
         sessionStorage.setItem('authenticated',true);
+        commit('UpdateAuthUserValidation',true);
       }
     }).catch((e)=>{
-      dispatch('deleteUserData')
+      dispatch('deleteUserData');
+      commit('UpdateAuthUserValidation',false);
+
     })
   },
 

@@ -15,7 +15,7 @@
                     <input class="form-control search_drop_down_input" search_at="search-drop-down"
                            @keyup="SearchNames"
                            name="name" :placeholder="words.job_title">
-                    <span><i class="bi bi-funnel"></i></span>
+                    <span><i class="bi bi-briefcase"></i></span>
                   </div>
                   <span v-if="false" class="dl"><i class="bi bi-chevron-down"></i></span>
                </div>
@@ -117,8 +117,7 @@ export default {
       span:first-of-type{
         background-color: $main_color;
         color:white;
-        width: 25px;
-        height: 25px;
+        padding: 2px 8px;
         border-radius: 3px;
         display: inline-flex;
         align-items: center;
