@@ -13,24 +13,21 @@
             <nuxt-link to="/" class="nav-link line-hover">{{ words.home }}</nuxt-link>
           </li>
           <li class="nav-item link mrl-1">
-            <nuxt-link to="/about" class="nav-link line-hover" href="#">{{ words.about }}</nuxt-link>
+            <nuxt-link to="/about-us" class="nav-link line-hover" href="#">{{ words.about }}</nuxt-link>
           </li>
 
-          <li class="nav-item link mrl-1">
-            <nuxt-link to="/jobs" class="nav-link line-hover">{{ words.jobs }}</nuxt-link>
-          </li>
           <li class="nav-item link mrl-1"
-              v-if="$auth.loggedIn && $auth.$state.user.hasOwnProperty('role') && $auth.$state.user.role.name == 'admin'">
+              v-if="false && $auth.loggedIn && $auth.$state.user.hasOwnProperty('role') && $auth.$state.user.role.name == 'admin'">
             <nuxt-link to="/dashboard" class="nav-link line-hover">{{ words.dashboard }}</nuxt-link>
           </li>
 
         </ul>
 
         <ul class="navbar-nav mb-2 mb-lg-0 align-items-md-center">
-          <li class="nav-item mrl-1" v-if="showRegisterLink">
+          <li class="nav-item mrl-1" v-if="showRegisterLink && false">
             <nuxt-link to="/auth/register" class="nav-link btn-bk-primary">{{ words.register }}</nuxt-link>
           </li>
-          <li class="nav-item mrl-1" v-else @click="logoutAction">
+          <li class="nav-item mrl-1" v-else-if="false" @click="logoutAction">
             <nuxt-link to="/auth/register" class="nav-link btn-bk-primary">{{ words.logout }}</nuxt-link>
           </li>
           <li class="nav-item mrl-1">

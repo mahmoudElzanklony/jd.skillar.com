@@ -3,7 +3,7 @@ import { resolve } from 'path'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'skillar.com',
+    title: 'JD skillar',
     htmlAttrs: {
       lang: 'en'
     },
@@ -11,10 +11,10 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
       { rel: 'stylesheet',  href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css' },
       { rel: 'stylesheet',class:'ar_external_style',  href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.rtl.min.css' },
     ],
@@ -68,8 +68,41 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    '@nuxtjs/sitemap'
     /*'@nuxtjs/recaptcha'*/
   ],
+
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://jd.skillar.com',
+    cacheTime: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+    generate: true, // Enable dynamic generation
+    async routes() {
+      // Get the Nuxt.js pages routes
+      const pagesRoutes = require('./router.js').default.routes;
+      const staticRoutes = ['/about-us', '/privacy', '/terms','/conditions'];
+
+      // Filter and extract the dynamic routes
+      const dynamicRoutes = pagesRoutes
+        .filter(route => {
+          // Exclude dashboard routes
+          if (route.path.includes('/dashboard/')) {
+            return false;
+          }
+          // Exclude other routes you want to exclude
+          // Add more conditions if needed
+
+          // Include all other dynamic routes
+          return true;
+        })
+        .map(route => route.path);
+
+      // Concatenate static and dynamic routes
+      const allRoutes = staticRoutes.concat(dynamicRoutes);
+
+      return allRoutes;
+    },
+  },
   /*recaptcha: {
     /!* reCAPTCHA options *!/
     siteKey: '6LfvFEclAAAAAFBdk7D9g0MePCnSpil7pyumkMjA', // for example,

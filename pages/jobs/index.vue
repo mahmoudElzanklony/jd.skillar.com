@@ -42,10 +42,10 @@
        <div class="container">
          <div class="row infinite_scroll" action_path="jobs/allJobsAction">
             <div class="col-lg-6 col-12 mb-2" v-for="(i,index) in jobs_data" :key="index">
-               <nuxt-link :to="'/jobs/'+i['id']">
+               <a target="_blank" :href="'/jobs/'+i['id']">
                  <span>{{ index + 1 }}</span>
                  <span class="mrl-reverse-15">{{ i['name'] }}</span>
-               </nuxt-link>
+               </a>
             </div>
          </div>
        </div>
@@ -71,6 +71,10 @@ export default {
       data: [],
       skills:['php','mysql','laravel'],
       lang:'',
+      meta:{
+        description:'You will find job descriptions for all jobs around the world here in jd.skillar.com. You will know everything related to jobs, including tasks, interests, requirements, certificates, etc., all in one place. | الوصف الوظيفي لجميع الوظائف حول العالم ستجدها هنا في سكلير ستعرف كل ما يتعلق بالوظائف  من مهام و اهتمامات و متطلبات و شهادات و خلافه هذا كله في مكان واحد ',
+        keywords:'Job description , job-specific certificates , job-specific interests , job-specific tasks , job requirements , job capabilities , job work values , job-related work activities , الوصف الوظيفي , الشهادات الخاصه بالوظيفه , الاهتمامات الخاصه بالوظيفة المهام الخاصه بالوظيفة , متطلبات الوظيفة , قدرات الوظيفة , قيم عمل الوظيفة , انشطة العمل المتلقة بالوظيفة'
+      },
     }
   },
   methods:{
@@ -90,6 +94,25 @@ export default {
     this.$store.dispatch('jobs/allJobsAction',{empty:true});
     this.lang = localStorage.getItem('lang');
   },
+  head() {
+    return {
+      title: 'الوصف الوظيفي لجميع الوظائف | jobs definition',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.meta['description']
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.meta['keywords']
+        }
+      ],
+
+    }
+  },
+
   computed:{
     ...mapGetters({
       'jobs_data':'jobs/getData',

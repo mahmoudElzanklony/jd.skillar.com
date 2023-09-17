@@ -129,6 +129,7 @@ export default {
      if(route.params){
        return store.dispatch('jobs/SpecificJob',route.params.id);
      }
+
   },
   async validate({ params}) {
     return !(isNaN(params.id));
@@ -137,14 +138,17 @@ export default {
     return {
       data: [],
       skills:['php','mysql','laravel'],
+      keywords_data:'',
     }
   },
   computed:{
     ...mapGetters({
        'getJobItemGetter':'jobs/getItemJob',
-    })
+       'getKeywordsGetter':'jobs/getKeywords',
+    }),
   },
   mounted() {
+    //this.keywords_data = 'abv';
     var com = this;
     setTimeout(()=>{
       /*document.querySelector('.buttons button[copy_target=true]').addEventListener('click', function () {
@@ -172,6 +176,27 @@ export default {
       doc.save("job_definition.pdf");*/
     },2500);
   },
+  head() {
+    return {
+      title: this.getJobItemGetter['name'],
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.getJobItemGetter['description']
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.getKeywordsGetter
+        }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
+      ],
+    }
+  },
+
   methods:{
     show_more_less(){
       var com = this;
@@ -230,6 +255,14 @@ export default {
       $('#'+a_link[1]+' .main-data-body').slideDown();
       $('#'+a_link[1]).find('.main-data-header div p:last-of-type i').removeClass('bi bi-chevron-down').addClass('bi bi-chevron-up');
       $('#'+a_link[1]).find('.main-data-header div p:last-of-type span:last-of-type').html(com.words['show_less']);
+    },
+    generate_keywords(){
+      let output = '';
+      for(let i of Object.keys(this.words.job_features)){
+        output+= this.words.job_features[i].split(' ').join(',');
+        output+= this.getJobItemGetter[i].split(' ').join(',');
+      }
+      return output;
     }
   },
   comments:{ShareComponent},

@@ -9,10 +9,7 @@
           <div class="links">
             <p>{{ words.quick_links }}</p>
             <ul>
-              <li><nuxt-link to="#" class="line-hover position-relative">{{ words.jobs }}</nuxt-link></li>
-              <li><nuxt-link to="#" class="line-hover position-relative">{{ words.companies }}</nuxt-link></li>
-              <li><nuxt-link to="#" class="line-hover position-relative">{{ words.posts }}</nuxt-link></li>
-              <li><nuxt-link to="#" class="line-hover position-relative">{{ words.plans }}</nuxt-link></li>
+              <li><nuxt-link to="/jobs" class="line-hover position-relative">{{ words.jobs }}</nuxt-link></li>
             </ul>
           </div>
         </div>
@@ -20,9 +17,9 @@
           <div class="links">
             <p>{{ words.resources }}</p>
             <ul>
-              <li><nuxt-link to="#" class="line-hover position-relative">{{ words.privacy }}</nuxt-link></li>
-              <li><nuxt-link to="#" class="line-hover position-relative">{{ words.terms_of_service }}</nuxt-link></li>
-              <li><nuxt-link to="#" class="line-hover position-relative">{{ words.user_condition }}</nuxt-link></li>
+              <li><nuxt-link to="/privacy" class="line-hover position-relative">{{ words.privacy }}</nuxt-link></li>
+              <li><nuxt-link to="/terms" class="line-hover position-relative">{{ words.terms_of_service }}</nuxt-link></li>
+              <li><nuxt-link to="/conditions" class="line-hover position-relative">{{ words.user_condition }}</nuxt-link></li>
             </ul>
           </div>
         </div>

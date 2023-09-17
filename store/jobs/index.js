@@ -3,6 +3,7 @@ import CurrentPageDetectPaginate from "../../plugins/CurrentPageDetectPaginate";
 export const state = () => ({
   data: [],
   item:{},
+  keywords:'',
   total:0,
   status:true
 })
@@ -16,6 +17,9 @@ export const getters = {
   },
   getItemJob(state){
     return state.item;
+  },
+  getKeywords(state){
+    return state.keywords;
   }
 }
 
@@ -40,6 +44,9 @@ export const mutations = {
       state.data = [...state.data, ...payload]
     }
   },
+  SetKeywords(state,payload){
+     state.keywords = payload;
+  }
 }
 
 export const actions = {
@@ -70,7 +77,22 @@ export const actions = {
     commit('loader/updateLoaderMutation', true, {root: true});
     return this.$axios.get('jobs/' + payload).then((e) => {
        console.log(e.data);
+       let output = '';
+       for(let item in e.data.data){
+         if(Array.isArray(e.data.data[item])){
+            for(let item_el of e.data.data[item]){
+              if(typeof item_el == "string") {
+                output += item_el.split(' , ');
+              }else{
+                output += Object.values(item_el).join(' , ');
+              }
+            }
+         }else if(item != 'id' && typeof e.data.data[item] == "string" && e.data.data[item] != ''){
+           output += e.data.data[item].split(' , ');
+         }
+       }
         commit('SetItemJob',e.data.data)
+        commit('SetKeywords',output);
     }).finally(() => {
       commit('loader/updateLoaderMutation', false, {root: true});
     });

@@ -20,11 +20,11 @@ export default {
       dots:['header','number_of_users','explore_categories','expand_connections','lastest_jobs','get_last_information'],
     }
   },
-  asyncData({store,route}) {
-
+  asyncData({store,route,redirect}) {
+      return redirect('/jobs');
   },
   created() {
-    this.$router.push('/jobs');
+   // this.$router.push('/jobs');
   },
   components:{HeaderComponent,DotsScrollComponent, JobComponent},
 }
