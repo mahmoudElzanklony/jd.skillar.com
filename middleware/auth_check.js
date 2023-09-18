@@ -3,7 +3,6 @@ import cookie from "cookie";
 export default function ({ store, redirect, route , req , $auth}) {
 
 
-  console.log($auth);
   if(route.path.indexOf('dashboard') >= 0){
     if($auth.loggedIn != true){
        return redirect('/')

@@ -19,7 +19,7 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
       { rel: 'stylesheet',  href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css' },
-      { rel: 'stylesheet',class:'ar_external_style',  href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.rtl.min.css' },
+      { rel: 'stylesheet',class:'ar_external_style',  href: '/css/arabic.css' },
     ],
     script:[
       {src:'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.min.js'},
@@ -76,7 +76,7 @@ export default {
   ],
 
   sitemap: {
-    hostname: 'http:localhost:3000',
+    hostname: 'https://jd-api.skillar.com',
     gzip: true,
     exclude: [
       '/dashboard/**'
