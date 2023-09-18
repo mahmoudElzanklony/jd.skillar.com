@@ -31,9 +31,9 @@ export default {
     })
   },
   mounted() {
-    if(this.auth_check_getter == null){
+    /*if(this.auth_check_getter == null){
        this.validate_user();
-    }
+    }*/
 
   },
   components: {NavbarComponent,FooterComponent}
