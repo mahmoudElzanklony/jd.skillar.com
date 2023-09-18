@@ -114,12 +114,14 @@ export default {
       this.showRegisterLink = !this.$store.state.auth.loggedIn
     },
     changeLang(){
+      document.cookie = "lang=; expires=Thu, 01 Jan 1990 00:00:00 UTC; path=/;";
       if(localStorage.getItem('lang') == null || localStorage.getItem('lang') == 'ar'){
           localStorage.setItem('lang','en');
-          document.cookie = "lang=en;";
+        document.cookie = "lang=en; expires=Thu, 01 Jan 3970 00:00:00 UTC; path=/;";
+
       }else{
         localStorage.setItem('lang','ar');
-        document.cookie = "lang=ar;";
+        document.cookie = "lang=ar; expires=Thu, 01 Jan 3970 00:00:00 UTC; path=/;";
       }
       window.location = document.URL;
     },
