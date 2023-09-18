@@ -19,7 +19,7 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
       { rel: 'stylesheet',  href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css' },
-      { rel: 'stylesheet',class:'ar_external_style',  href: '/css/arabic.css' },
+    //  { rel: 'stylesheet',class:'ar_external_style',  href: '/css/arabic.css' },
     ],
     script:[
       {src:'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.min.js'},
@@ -45,7 +45,6 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    {src:'~/plugins/checkStyle.js',mode:'client'},
     {src:'~/plugins/jquery_plugin',mode:'client'},
     {src:'~/plugins/sweet_alert',mode:'client'},
    // {src:'~/plugins/text_editor',mode:'client'},
@@ -120,7 +119,7 @@ export default {
     }
   },
   router: {
-    middleware: ['auth_check'],
+    middleware: ['auth_check','checkStyle'],
   },
   auth: {
     redirect: {
