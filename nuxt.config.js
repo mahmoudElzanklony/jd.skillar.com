@@ -76,7 +76,7 @@ export default {
   ],
 
   sitemap: {
-    hostname: 'https://jd-api.skillar.com',
+    hostname: 'https://jd.skillar.com',
     gzip: true,
     exclude: [
       '/dashboard/**'
