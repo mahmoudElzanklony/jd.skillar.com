@@ -59,6 +59,25 @@ export default {
       lang:'ar',
     }
   },
+  head() {
+    return {
+      title: 'من نحن | about us',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'تعريف بموقع الوصف الوظيفي ومن صاحب الفكرة ومن مؤسسة ومزيد من المعلومات الاخري',
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: 'about us , من نحن ',
+        }
+      ],
+
+    }
+  },
+
   mounted() {
     if(localStorage.hasOwnProperty('lang') && localStorage.lang == 'en'){
       this.lang = 'en';

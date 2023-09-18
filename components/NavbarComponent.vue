@@ -13,7 +13,7 @@
             <nuxt-link to="/" class="nav-link line-hover">{{ words.home }}</nuxt-link>
           </li>
           <li class="nav-item link mrl-1">
-            <nuxt-link to="/about-us" class="nav-link line-hover" href="#">{{ words.about }}</nuxt-link>
+            <nuxt-link to="/about-us" class="nav-link line-hover" href="/about-us">{{ words.about }}</nuxt-link>
           </li>
 
           <li class="nav-item link mrl-1"

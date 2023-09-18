@@ -76,7 +76,6 @@ export const actions = {
   async SpecificJob({commit},payload){
     commit('loader/updateLoaderMutation', true, {root: true});
     return this.$axios.get('jobs/' + payload).then((e) => {
-       console.log(e.data);
        let output = '';
        for(let item in e.data.data){
          if(Array.isArray(e.data.data[item])){

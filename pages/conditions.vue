@@ -45,6 +45,25 @@ export default {
       lang:'ar',
     }
   },
+  head() {
+    return {
+      title: 'الشروط | conditions',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: ' الشروط المتعلقة بموقع الوصف الوظيفي',
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: 'user conditions , الشروط',
+        }
+      ],
+
+    }
+  },
+
   mounted() {
     if(localStorage.hasOwnProperty('lang') && localStorage.lang == 'en'){
       this.lang = 'en';

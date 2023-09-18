@@ -64,6 +64,25 @@ export default {
       lang:'ar',
     }
   },
+  head() {
+    return {
+      title: 'الاحكام | Terms',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'الاحكام المتلعقة بالوصف الوظيفي ',
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: 'privacy ,  jd , JD , jd definitions',
+        }
+      ],
+
+    }
+  },
+
   mounted() {
     if(localStorage.hasOwnProperty('lang') && localStorage.lang == 'en'){
       this.lang = 'en';

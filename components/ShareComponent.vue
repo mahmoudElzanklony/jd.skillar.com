@@ -21,7 +21,7 @@
                <i class="bi bi-linkedin"></i>
              </a>
             <a class="d-inline-flex justify-content-between align-items-center mrl-1" target="_blank"
-               :href="'http://twitter.com/share?text=skillar post&url='+url">
+               :href="'http://twitter.com/share?text='+post_text+'&url='+url">
                <i class="bi bi-twitter"></i>
              </a>
           </div>
@@ -43,10 +43,12 @@ export default {
     return {
       file_name:'modals/share_box',
       url:'',
+      post_text:'',
     }
   },
   mounted() {
     this.url = document.URL;
+    this.post_text = document.querySelector('head title').innerHTML;
   },
 }
 </script>

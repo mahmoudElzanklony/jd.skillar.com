@@ -61,6 +61,25 @@ export default {
       lang:'ar',
     }
   },
+  head() {
+    return {
+      title: 'سياسة الخصوصية | privacy',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'سياسة الخصوصية المتلعقة بالوصف الوظيفي ',
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: 'privacy ,  jd , JD , jd definitions',
+        }
+      ],
+
+    }
+  },
+
   mounted() {
     if(localStorage.hasOwnProperty('lang') && localStorage.lang == 'en'){
       this.lang = 'en';

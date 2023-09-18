@@ -1,4 +1,7 @@
 import { resolve } from 'path'
+import axios from "./plugins/axios";
+const Axios = require('axios')
+
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -73,35 +76,24 @@ export default {
   ],
 
   sitemap: {
-    path: '/sitemap.xml',
-    hostname: 'https://jd.skillar.com',
-    cacheTime: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
-    generate: true, // Enable dynamic generation
-    async routes() {
-      // Get the Nuxt.js pages routes
-      const pagesRoutes = require('./router.js').default.routes;
-      const staticRoutes = ['/about-us', '/privacy', '/terms','/conditions'];
+    hostname: 'http:localhost:3000',
+    gzip: true,
+    exclude: [
+      '/dashboard/**'
+    ],
+    routes: async () => {
+      var data = [];
+      await Axios.get('https://jd-api.skillar.com/api/jobs-ids').then((e)=>{
+        data = e.data
+      });
+      if(data.length > 0) {
+        return data.map(job => `/jobs/${job.id}`)
+      }else{
+        return [];
+      }
+    }
 
-      // Filter and extract the dynamic routes
-      const dynamicRoutes = pagesRoutes
-        .filter(route => {
-          // Exclude dashboard routes
-          if (route.path.includes('/dashboard/')) {
-            return false;
-          }
-          // Exclude other routes you want to exclude
-          // Add more conditions if needed
 
-          // Include all other dynamic routes
-          return true;
-        })
-        .map(route => route.path);
-
-      // Concatenate static and dynamic routes
-      const allRoutes = staticRoutes.concat(dynamicRoutes);
-
-      return allRoutes;
-    },
   },
   /*recaptcha: {
     /!* reCAPTCHA options *!/

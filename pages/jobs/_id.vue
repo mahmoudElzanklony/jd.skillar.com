@@ -120,7 +120,6 @@ import GeneratePDF from "../../mixins/GeneratePDF";
 import ShareComponent from "../../components/ShareComponent";
 import {mapGetters,mapActions} from 'vuex';
 import Send_feedback from "../../components/Modals/send_feedback";
-
 export default {
   name: '_id',
   components: {Send_feedback, ShareComponent},
@@ -147,8 +146,9 @@ export default {
        'getKeywordsGetter':'jobs/getKeywords',
     }),
   },
-  mounted() {
+  async mounted() {
     //this.keywords_data = 'abv';
+
     var com = this;
     setTimeout(()=>{
       /*document.querySelector('.buttons button[copy_target=true]').addEventListener('click', function () {
