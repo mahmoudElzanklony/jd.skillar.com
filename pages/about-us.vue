@@ -9,9 +9,6 @@
 
           At Job Definitions, we understand the importance of having a clear understanding of job requirements, responsibilities, and work environments before pursuing a particular career path. We aim to bridge the gap between job seekers and job information by compiling accurate and comprehensive descriptions of numerous professions across diverse industries.<br><br>
 
-          <strong>Founder and Owner - Yaagoub AlNujaidi:</strong><br>
-          Job Definitions was founded by Yaagoub AlNujaidi, a visionary entrepreneur with a passion for helping individuals navigate the complex world of career choices. With years of experience in the industry, Yaagoub recognized the need for a platform that offers in-depth job descriptions to support individuals in their career exploration journey.<br>
-          Yaagoub AlNujaidi's expertise and dedication have been instrumental in creating a user-friendly platform where users can easily access reliable information about various job roles. His vision of empowering individuals with knowledge and insights has been the driving force behind Job Definitions' success.<br><br>
 
           <strong>Our Commitment:</strong><br>
           At Job Definitions, we are committed to providing accurate, up-to-date, and comprehensive job information. We strive for excellence in every aspect of our platform, ensuring that our users have access to the most relevant and reliable information available.<br><br>
@@ -31,8 +28,6 @@
           في تعريفات الوظيفة، نحن ندرك أهمية وجود فهم واضح لمتطلبات الوظيفة والمسؤوليات وبيئات العمل قبل متابعة مسار وظيفي معين. نحن نهدف إلى سد الفجوة بين الباحثين عن عمل ومعلومات الوظائف من خلال تجميع أوصاف دقيقة وشاملة للعديد من المهن في مختلف الصناعات.
           <br><br>
 
-          <strong>المؤسس والمالك - يعقوب النجدي:</strong><br>
-          تأسس  موقع Job Definitions على يد يعقوب النجيدي، وهو رجل أعمال ذو رؤية لديه شغف لمساعدة الأفراد على التنقل في عالم معقد من الخيارات المهنية. بفضل سنوات من الخبرة في هذا المجال، أدرك يعقوب الحاجة إلى منصة تقدم وصفًا وظيفيًا متعمقًا لدعم الأفراد في رحلة استكشاف حياتهم المهنية.<br>لقد كان لخبرة يعقوب النجيدي وتفانيه دور فعال في إنشاء منصة سهلة الاستخدام حيث يمكن للمستخدمين الوصول بسهولة إلى معلومات موثوقة حول الأدوار الوظيفية المختلفة. لقد كانت رؤيته المتمثلة في تمكين الأفراد بالمعرفة والرؤى هي القوة الدافعة وراء نجاح تعريفات الوظيفة.<br><br>
 
           <strong>التزامنا:</strong><br>
           في تعريفات الوظيفة، نحن ملتزمون بتوفير معلومات وظيفية دقيقة وحديثة وشاملة. نحن نسعى جاهدين لتحقيق التميز في كل جانب من جوانب منصتنا، مما يضمن حصول مستخدمينا على الوصول إلى المعلومات المتاحة الأكثر صلة وموثوقية.<br><br>
