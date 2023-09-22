@@ -55,10 +55,6 @@ export default {
       name:'Work Values',
       link:'work_values',
     },
-    {
-      name:'Cross Walk',
-      link:'cross_walk',
-    },
   ],
   send_feedback:'Send Feedback',
 
