@@ -42,7 +42,8 @@
       <div class="container">
         <div class="row infinite_scroll" action_path="jobs/allJobsAction">
           <div class="col-lg-6 col-12 mb-2" v-for="(i,index) in jobs_data" :key="index">
-            <a target="_blank" :href="'/jobs/'+i['id']">
+            <a target="_blank" class="cursor-pointer"
+               @click.prevent="check_view_count(i['id'])">
               <span>{{ index + 1 }}</span>
               <span class="mrl-reverse-15">{{ i['name'] }}</span>
             </a>
@@ -58,6 +59,7 @@
 <script>
 import WordsLang from "../mixins/WordsLang";
 import InfiniteScroll from "../mixins/InfiniteScroll";
+import GuestUser from "../mixins/GuestUser";
 import {mapGetters,mapActions} from 'vuex';
 import Job_info_filters_box from "../components/Modals/job_info_filters_box";
 import filters_jobs_search from "../mixins/filters_jobs_search";
@@ -65,7 +67,7 @@ import filters_jobs_search from "../mixins/filters_jobs_search";
 export default {
   name: 'index',
   components: {Job_info_filters_box},
-  mixins:[WordsLang,InfiniteScroll,filters_jobs_search],
+  mixins:[WordsLang,InfiniteScroll,filters_jobs_search,GuestUser],
   data(){
     return {
       data: [],
@@ -89,7 +91,17 @@ export default {
 
       this.current_page = 2;
       this.getJobsByName(data);
-    }
+    },
+    check_view_count(id){
+      this.guest_action();
+      if(this.count_explore > 3){
+        return Toast.fire({
+          icon:'error',
+          title:this.words.should_login_to_view
+        });
+      }
+      window.open('/jobs/'+id, '_blank').focus();
+    },
   },
   mounted() {
     this.$store.dispatch('jobs/allJobsAction',{empty:true});

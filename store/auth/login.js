@@ -33,8 +33,9 @@ export const actions = {
        await this.$auth.loginWith('local', {
         data: new FormData(target)
       })
-      console.log(this.state.auth.user)
-      await router.push('/');
+      if(this.state.auth.user) {
+         window.location = '/';
+      }
       //this.$auth.setUser(response.data.user)
     }catch {
       Toast.fire({
@@ -100,10 +101,9 @@ export const actions = {
 
   async logoutAction({state,commit,dispatch}){
     return this.$axios.post('logout').then((e)=>{
-      console.log('logout.......................');
-      if(e.data.status == 200){
-        dispatch('deleteUserData')
-      }
+      document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+      localStorage.clear();
+      window.location = document.URL;
     })
   }
 

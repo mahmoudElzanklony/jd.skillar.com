@@ -119,11 +119,12 @@ import CopyContent from "../../mixins/CopyContent";
 import GeneratePDF from "../../mixins/GeneratePDF";
 import ShareComponent from "../../components/ShareComponent";
 import {mapGetters,mapActions} from 'vuex';
+import GuestUser from "../../mixins/GuestUser";
 import Send_feedback from "../../components/Modals/send_feedback";
 export default {
   name: '_id',
   components: {Send_feedback, ShareComponent},
-  mixins:[WordsLang,CopyContent,GeneratePDF],
+  mixins:[WordsLang,CopyContent,GeneratePDF,GuestUser],
   asyncData({store,route}){
      if(route.params){
        return store.dispatch('jobs/SpecificJob',route.params.id);
@@ -147,6 +148,15 @@ export default {
     }),
   },
   async mounted() {
+    if(this.count_explore > 3){
+      this.guest_action()
+      Toast.fire({
+        icon:'error',
+        title:'من فضلك سجل دخول لكي يمكنك تصفح محتوي جميع الوظائف',
+      //  title:this.words.should_login_to_view
+      });
+      return this.$router.push('/');
+    }
     //this.keywords_data = 'abv';
 
     var com = this;

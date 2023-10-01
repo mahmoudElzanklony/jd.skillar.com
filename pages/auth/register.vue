@@ -1,6 +1,6 @@
 <template>
   <section class="auth current_page">
-    <div class="auth-content">
+    <div class="auth-content mb-4">
       <div class="container-fluid">
         <div class="row h-100">
 
@@ -27,28 +27,32 @@
                 </div>
                 <div class="form-group mb-2 input-icon flex-wrap">
                   <label>{{ words.username }}</label>
-                  <input class="form-control" name="username" >
                   <span><i class="bi bi-person"></i></span>
+                  <input class="form-control" name="username" >
                 </div>
                 <div class="form-group mb-2 input-icon flex-wrap">
                   <label>{{ words.email }}</label>
-                  <input class="form-control" name="email" >
                   <span><i class="bi bi-envelope"></i></span>
+                  <input class="form-control" name="email" >
+                  <p class="alert alert-danger"></p>
                 </div>
                 <div class="form-group mb-3 input-icon flex-wrap">
                   <label>{{ words.password }}</label>
-                  <input class="form-control" name="password" type="password" >
                   <span><i class="bi bi-key"></i></span>
+                  <input class="form-control" name="password" type="password" >
+                  <p class="alert-danger"></p>
                 </div>
                 <div class="form-group mb-3 input-icon flex-wrap">
                   <label>{{ words.password_confirmation }}</label>
-                  <input class="form-control" name="password_confirmation" type="password" >
                   <span><i class="bi bi-key"></i></span>
+                  <input class="form-control" name="password_confirmation" type="password" >
+                  <p class="alert-danger"></p>
                 </div>
                 <div class="form-group mb-3 input-icon flex-wrap">
                   <label>{{ words.phone }}</label>
-                  <input class="form-control" name="phone" type="number" >
                   <span><i class="bi bi-phone"></i></span>
+                  <input class="form-control" name="phone" type="number" >
+                  <p class="alert-danger"></p>
                 </div>
                 <div class="form-group mb-3 input-icon flex-wrap">
                   <label>{{ words.country }}</label>
@@ -56,15 +60,6 @@
                           required>
                     <option value="">{{ words.select_best_choice }}</option>
                     <option  v-for="(i,index) in getCountriesGetter" :key="index" :value="i['id']">{{ i['name'] }}</option>
-                  </select>
-                  <span><i class="bi bi-arrow-down-short"></i></span>
-                </div>
-                <div class="form-group mb-3 input-icon flex-wrap">
-                  <label>{{ words.user_type }}</label>
-                  <select class="form-control" name="type" required>
-                    <option value="">{{ words.select_best_choice }}</option>
-                    <option value="client">{{ words.client }}</option>
-                    <option value="company">{{ words.company }}</option>
                   </select>
                   <span><i class="bi bi-arrow-down-short"></i></span>
                 </div>
@@ -173,6 +168,13 @@ export default {
   input[type="checkbox"]{
     width: 18px;
     height: 18px;
+  }
+  .alert{
+    display: none;
+    width: 100%;
+    text-align: inherit;
+    font-size: $small;
+    margin-top: 5px;
   }
   input[type="submit"]{
 

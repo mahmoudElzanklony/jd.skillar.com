@@ -57,5 +57,7 @@ export default {
     },
   ],
   send_feedback:'Send Feedback',
+  should_login_to_view:'Please login to explore content of all jobs',
+
 
 }

@@ -66,4 +66,5 @@ export default {
 
   ],
   send_feedback:'ارسال الانطباع',
+  should_login_to_view:'من فضلك سجل دخول لكي يمكنك تصفح محتوي جميع الوظائف',
 }

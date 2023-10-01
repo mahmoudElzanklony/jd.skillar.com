@@ -17,18 +17,18 @@
           </li>
 
           <li class="nav-item link mrl-1"
-              v-if="false && $auth.loggedIn && $auth.$state.user.hasOwnProperty('role') && $auth.$state.user.role.name == 'admin'">
+              v-if="$auth.loggedIn && $auth.$state.user.hasOwnProperty('role') && $auth.$state.user.role.name == 'admin'">
             <nuxt-link to="/dashboard" class="nav-link line-hover">{{ words.dashboard }}</nuxt-link>
           </li>
 
         </ul>
 
         <ul class="navbar-nav mb-2 mb-lg-0 align-items-md-center">
-          <li class="nav-item mrl-1" v-if="showRegisterLink && false">
-            <nuxt-link to="/auth/register" class="nav-link btn-bk-primary">{{ words.register }}</nuxt-link>
+          <li class="nav-item mrl-1" v-if="!($auth.loggedIn)">
+            <a href="/auth/register" class="nav-link btn-bk-primary">{{ words.register }}</a>
           </li>
-          <li class="nav-item mrl-1" v-else-if="false" @click="logoutAction">
-            <nuxt-link to="/auth/register" class="nav-link btn-bk-primary">{{ words.logout }}</nuxt-link>
+          <li class="nav-item mrl-1" v-else-if="$auth.loggedIn" @click="logoutAction">
+            <a @click.prevent="logoutAction" class="nav-link btn-bk-primary cursor-pointer">{{ words.logout }}</a>
           </li>
           <li class="nav-item mrl-1">
             <button class="nav-link btn btn-outline-primary" @click="changeLang">

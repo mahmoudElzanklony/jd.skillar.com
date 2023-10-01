@@ -34,6 +34,13 @@ export default {
     /*if(this.auth_check_getter == null){
        this.validate_user();
     }*/
+    if(localStorage.user_view_obj == undefined){
+       var obj = {
+          auth_status:this.$auth.loggedIn == undefined ? false:true,
+          count:0
+       };
+       localStorage.setItem('user_view_obj',JSON.stringify(obj));
+    }
 
   },
   components: {NavbarComponent,FooterComponent}
