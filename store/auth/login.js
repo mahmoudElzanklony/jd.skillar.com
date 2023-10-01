@@ -30,9 +30,11 @@ export const actions = {
     this.$auth.$storage.setUniversal('redirect', null)
    // commit('loader/updateLoaderMutation',true,{root:true});
     try {
+      // response data
       var dataresponse = await this.$auth.loginWith('local', {
         data: new FormData(target)
       })
+      // check if there are any errors
       if(dataresponse.data.hasOwnProperty('errors')){
         Toast.fire({
           icon:'error',
