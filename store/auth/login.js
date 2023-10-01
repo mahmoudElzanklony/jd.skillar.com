@@ -36,7 +36,7 @@ export const actions = {
       })
       // check if there are any errors
       if(dataresponse.data.hasOwnProperty('errors')){
-        Toast.fire({
+        return Toast.fire({
           icon:'error',
           title:dataresponse.data.errors
         });
