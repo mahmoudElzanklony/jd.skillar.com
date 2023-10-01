@@ -131,7 +131,8 @@ export default {
           property: 'token',
           global: true,
           required: true,
-          type: 'Bearer'
+          type: 'Bearer',
+          maxAge: 60 * 60 * 60,
         },
         user: {
           property: false,
@@ -141,8 +142,12 @@ export default {
           login: { url: '/login', method: 'post', propertyName: 'token' },
           logout: { url: '/logout', method: 'post' },
           user: { url: '/user', method: 'get', propertyName: 'user' }
-        }
+        },
+        refreshToken: {
+          property: 'token',
+          maxAge: 2016000 * 60,
+        },
       }
     }
-  }
+  },
 }

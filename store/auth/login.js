@@ -35,15 +35,16 @@ export const actions = {
         data: new FormData(target)
       })
       console.log(dataresponse);
+      console.log(dataresponse.data);
+      console.log(dataresponse.data.hasOwnProperty('errors'));
       // check if there are any errors
       if(dataresponse.data.hasOwnProperty('errors')){
-        return Toast.fire({
+        Toast.fire({
           icon:'error',
           title:dataresponse.data.errors
         });
+        return false;
       }else {
-        console.log(dataresponse.data);
-        console.log(this.state.auth);
         if (this.state.auth.user) {
           window.location = '/';
         }
