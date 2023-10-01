@@ -40,9 +40,10 @@ export const actions = {
           icon:'error',
           title:dataresponse.data.errors
         });
-      }
-      if(this.state.auth.user){
-        window.location = '/';
+      }else {
+        if (this.state.auth.user) {
+          window.location = '/';
+        }
       }
 
       //this.$auth.setUser(response.data.user)
