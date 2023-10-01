@@ -34,6 +34,7 @@ export const actions = {
       var dataresponse = await this.$auth.loginWith('local', {
         data: new FormData(target)
       })
+      console.log(dataresponse);
       // check if there are any errors
       if(dataresponse.data.hasOwnProperty('errors')){
         return Toast.fire({
@@ -54,26 +55,9 @@ export const actions = {
         icon:'error',
         title:'error in auth process'
       });
-      await router.push('/auth/login');
+      //await router.push('/auth/login');
       return false;
     }
-    /*return this.$axios.post('login',new FormData(target)).then((e)=>{
-      console.log(e.data);
-      formValidation(e.data,target,'/',true);
-      if(e.data.status == 200){
-        window.location = '/';
-      }
-      if(e.data.status == 200){
-        commit('InitializeData',e.data.data);
-        localStorage.setItem('user_info',JSON.stringify(e.data.data));
-        localStorage.setItem('token',e.data.data.token);
-        sessionStorage.setItem('authenticated',true);
-        document.cookie = "token="+e.data.data.token+"; expires=Thu, 01 Jan 3970 00:00:00 UTC; path=/;";
-        document.cookie = "user_info="+JSON.stringify(e.data.data)+"; expires=Thu, 01 Jan 3970 00:00:00 UTC; path=/;";
-      }
-    }).finally(() => {
-      commit('loader/updateLoaderMutation',false,{root:true});
-    });*/
   },
 
   async deleteUserData(){
