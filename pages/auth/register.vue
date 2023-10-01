@@ -29,6 +29,7 @@
                   <label>{{ words.username }}</label>
                   <span><i class="bi bi-person"></i></span>
                   <input class="form-control" name="username" >
+                  <p class="alert alert-danger"></p>
                 </div>
                 <div class="form-group mb-2 input-icon flex-wrap">
                   <label>{{ words.email }}</label>
@@ -40,19 +41,19 @@
                   <label>{{ words.password }}</label>
                   <span><i class="bi bi-key"></i></span>
                   <input class="form-control" name="password" type="password" >
-                  <p class="alert-danger"></p>
+                  <p class="alert alert-danger"></p>
                 </div>
                 <div class="form-group mb-3 input-icon flex-wrap">
                   <label>{{ words.password_confirmation }}</label>
                   <span><i class="bi bi-key"></i></span>
                   <input class="form-control" name="password_confirmation" type="password" >
-                  <p class="alert-danger"></p>
+                  <p class="alert alert-danger"></p>
                 </div>
                 <div class="form-group mb-3 input-icon flex-wrap">
                   <label>{{ words.phone }}</label>
                   <span><i class="bi bi-phone"></i></span>
                   <input class="form-control" name="phone" type="number" >
-                  <p class="alert-danger"></p>
+                  <p class="alert alert-danger"></p>
                 </div>
                 <div class="form-group mb-3 input-icon flex-wrap">
                   <label>{{ words.country }}</label>
@@ -172,8 +173,9 @@ export default {
   .alert{
     display: none;
     width: 100%;
-    text-align: inherit;
+    text-align: inherit !important;
     font-size: $small;
+    font-weight: bold;
     margin-top: 5px;
   }
   input[type="submit"]{
