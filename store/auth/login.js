@@ -41,6 +41,8 @@ export const actions = {
           title:dataresponse.data.errors
         });
       }else {
+        console.log(dataresponse.data);
+        console.log(this.state.auth);
         if (this.state.auth.user) {
           window.location = '/';
         }
