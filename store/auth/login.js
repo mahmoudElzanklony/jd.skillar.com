@@ -24,31 +24,33 @@ export const mutations = {
 
 export const actions = {
   async loginAction({ state,commit }) {
-    let router = this.$router;
     var target = event.target;
     // Clear the redirect path
     this.$auth.$storage.setUniversal('redirect', null)
    // commit('loader/updateLoaderMutation',true,{root:true});
     try {
       // response data
-      var dataresponse = await this.$auth.loginWith('local', {
+       await this.$auth.loginWith('local', {
         data: new FormData(target)
-      })
-      console.log(dataresponse);
-      console.log(dataresponse.data);
-      console.log(dataresponse.data.hasOwnProperty('errors'));
-      // check if there are any errors
-      if(dataresponse.data.hasOwnProperty('errors')){
-        Toast.fire({
-          icon:'error',
-          title:dataresponse.data.errors
-        });
-        return false;
-      }else {
-        if (this.state.auth.user) {
-          window.location = '/';
+      }).then(function(dataresponse){
+        if(dataresponse.data.hasOwnProperty('errors')){
+          Toast.fire({
+            icon:'error',
+            title:dataresponse.data.errors
+          });
+        }else {
+          if (this.state.auth.user) {
+            window.location = '/';
+          }
         }
-      }
+      }).catch(function (){
+         Toast.fire({
+           icon:'error',
+           title:'error in auth process'
+         });
+      })
+      // check if there are any errors
+
 
       //this.$auth.setUser(response.data.user)
     }catch {
