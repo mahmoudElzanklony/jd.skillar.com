@@ -30,12 +30,19 @@ export const actions = {
     this.$auth.$storage.setUniversal('redirect', null)
    // commit('loader/updateLoaderMutation',true,{root:true});
     try {
-       await this.$auth.loginWith('local', {
+      var dataresponse = await this.$auth.loginWith('local', {
         data: new FormData(target)
       })
-      if(this.state.auth.user) {
-         window.location = '/';
+      if(dataresponse.data.hasOwnProperty('errors')){
+        Toast.fire({
+          icon:'error',
+          title:dataresponse.data.errors
+        });
       }
+      if(this.state.auth.user){
+        window.location = '/';
+      }
+
       //this.$auth.setUser(response.data.user)
     }catch {
       Toast.fire({
