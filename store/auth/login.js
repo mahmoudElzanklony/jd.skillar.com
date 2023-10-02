@@ -24,43 +24,60 @@ export const mutations = {
 
 export const actions = {
   async loginAction({ state,commit }) {
+    let router = this.$router;
     var target = event.target;
     // Clear the redirect path
     this.$auth.$storage.setUniversal('redirect', null)
-   // commit('loader/updateLoaderMutation',true,{root:true});
+    // commit('loader/updateLoaderMutation',true,{root:true});
     try {
-      // response data
-       await this.$auth.loginWith('local', {
+      await this.$auth.loginWith('local', {
         data: new FormData(target)
-      }).then(function(dataresponse){
+      }).then((dataresponse)=>{
         if(dataresponse.data.hasOwnProperty('errors')){
-          Toast.fire({
+          return Toast.fire({
             icon:'error',
             title:dataresponse.data.errors
           });
-        }else {
-          if (this.state.auth.user) {
-            window.location = '/';
-          }
         }
-      }).catch(function (){
-         Toast.fire({
-           icon:'error',
-           title:'error in auth process'
-         });
+        if(this.state.auth.user){
+          window.location = '/';
+        }
+      }).catch((e)=>{
+        Toast.fire({
+          icon:'error',
+          title:'error in auth process'
+        });
+        router.push('/auth/login');
+        return false;
       })
-      // check if there are any errors
 
-
+      //window.location = '/';
       //this.$auth.setUser(response.data.user)
     }catch {
       Toast.fire({
         icon:'error',
         title:'error in auth process'
       });
-      //await router.push('/auth/login');
+      await router.push('/auth/login');
       return false;
     }
+    /*return this.$axios.post('login',new FormData(target)).then((e)=>{
+      console.log(e.data);
+      formValidation(e.data,target,'/',true);
+      if(e.data.status == 200){
+        window.location = '/';
+      }
+      if(e.data.status == 200){
+        commit('InitializeData',e.data.data);
+        localStorage.setItem('user_info',JSON.stringify(e.data.data));
+        localStorage.setItem('token',e.data.data.token);
+        sessionStorage.setItem('authenticated',true);
+        document.cookie = "token="+e.data.data.token+"; expires=Thu, 01 Jan 3970 00:00:00 UTC; path=/;";
+        document.cookie = "user_info="+JSON.stringify(e.data.data)+"; expires=Thu, 01 Jan 3970 00:00:00 UTC; path=/;";
+      }
+    }).finally(() => {
+      commit('loader/updateLoaderMutation',false,{root:true});
+    });*/
   },
 
   async deleteUserData(){
@@ -99,6 +116,8 @@ export const actions = {
 
 
   async logoutAction({state,commit,dispatch}){
+    //this.$auth.logout();
+
     return this.$axios.post('logout').then((e)=>{
       document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
       localStorage.clear();
