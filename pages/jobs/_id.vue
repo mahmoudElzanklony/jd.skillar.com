@@ -13,7 +13,7 @@
     </div>
     <div class="info mt-2">
         <div class="container">
-          <div class="row">
+          <div class="row" v-if="$auth.loggedIn == true || count_explore < 4">
             <div class="col-lg-9 col-md-6 col-12 mb-2 mt-2">
                <div class="d-flex align-items-center justify-content-between buttons">
                   <button class="btn-bk-primary d-inline-flex align-items-center" status="open" @click="toggle_all_sections">
@@ -105,6 +105,7 @@
                </div>
             </div>
           </div>
+          <p v-else class="alert alert-warning">{{ words['should_login_to_view'] }}</p>
         </div>
     </div>
     <share-component></share-component>
@@ -150,12 +151,12 @@ export default {
   async mounted() {
     if(this.count_explore > 3){
       this.guest_action()
-      Toast.fire({
+      /*Toast.fire({
         icon:'error',
         title:'من فضلك سجل دخول لكي يمكنك تصفح محتوي جميع الوظائف',
       //  title:this.words.should_login_to_view
       });
-      return this.$router.push('/');
+      return this.$router.push('/');*/
     }
     //this.keywords_data = 'abv';
 
