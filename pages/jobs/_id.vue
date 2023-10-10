@@ -13,6 +13,7 @@
     </div>
     <div class="info mt-2">
         <div class="container">
+
           <div class="row" v-if="$auth.loggedIn == true || count_explore < 4">
             <div class="col-lg-9 col-md-6 col-12 mb-2 mt-2">
                <div class="d-flex align-items-center justify-content-between buttons">
