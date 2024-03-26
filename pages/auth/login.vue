@@ -36,6 +36,11 @@
                     <input class="form-control" name="password" type="password" required>
                     <span><i class="bi bi-key"></i></span>
                   </div>
+                  <div class="g-recaptcha mb-2"
+                       data-sitekey="6Ld2TEclAAAAANpPyGp_2WsRbnOosh29smJPP9uB"
+                       data-callback="verify_recaptha"
+                  ></div>
+
                   <div class="form-group mb-4">
                     <input class="form-control btn btn-primary" type="submit" :value="words.login">
                   </div>
@@ -70,7 +75,18 @@ export default {
   methods:{
     ...mapActions({
       'login':'auth/login/loginAction'
-    })
+    }),
+    verify_recaptha() {
+      console.log('yes');
+      console.log(grecaptcha);
+      document.querySelector('input[type="submit"]').removeAttribute('disabled');
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6Ld2TEclAAAAANpPyGp_2WsRbnOosh29smJPP9uB', {action: 'submit'}).then(function(token) {
+          // Add your logic to submit to your backend server here.
+          console.log(token)
+        });
+      });
+    },
   },
 }
 </script>
