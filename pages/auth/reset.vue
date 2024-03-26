@@ -6,7 +6,7 @@
           <div class="col-md-5 mb-2 mt-3 d-flex align-items-center">
             <div class="form-data w-100">
               <p class="fw-bold p-3">{{ words.forget_password }}</p>
-              <form class="p-3">
+              <form class="p-3" method="post" @submit.prevent="reset">
                 <div class="form-group mb-2 input-icon flex-wrap">
                   <label>{{ words.email }}</label>
                   <input class="form-control" name="email" required>
@@ -34,11 +34,15 @@
 
 <script>
 import WordsLang from "../../mixins/WordsLang";
+import {mapActions} from "vuex";
+
 export default {
   name: "reset",
   mixins:[WordsLang],
   methods:{
-
+    ...mapActions({
+      'reset':'auth/reset/check_email_exists'
+    })
   },
   created() {
     console.log(this.$route);

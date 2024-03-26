@@ -9,7 +9,7 @@
               <form class="p-3"
                     method="post"
                     @submit.prevent="register">
-                <div class="social_media_apps_auth">
+                <div class="social_media_apps_auth" v-if="false">
                   <p class="text-center mb-2 mt-3">{{ words.register_with }}</p>
                   <div class="text-center mb-2">
                     <a href="#" class="facebook mrl-1">
@@ -25,6 +25,7 @@
                     <span></span>
                   </p>
                 </div>
+                <h2>{{ words.register }}</h2>
                 <div class="form-group mb-2 input-icon flex-wrap">
                   <label>{{ words.username }}</label>
                   <span><i class="bi bi-person"></i></span>

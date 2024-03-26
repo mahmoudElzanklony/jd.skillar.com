@@ -40,6 +40,11 @@ export const actions = {
           });
         }
         if(this.state.auth.user){
+          let data = {
+            user:this.state.auth.user,
+            website:'skillar'
+          }
+          document.cookie = "loginExternalSite="+JSON.stringify(data)+";domain=.skillar.com; path=/"
           window.location = '/';
         }
       }).catch((e)=>{
@@ -88,6 +93,18 @@ export const actions = {
     document.cookie = "token=; expires=Thu, 01 Jan 1990 00:00:00 UTC; path=/;";
     document.cookie = "user_info=; expires=Thu, 01 Jan 1990 00:00:00 UTC; path=/;";
     window.location = '/auth/login';
+  },
+
+  async loginBySerial({state,commit,dispatch},serial_number){
+    let data = new FormData();
+    data.append('serial_number',serial_number);
+    await this.$auth.loginWith('local', {
+      data: data
+    }).then((e)=>{
+      if(e.data.status === 200 || e.data.hasOwnProperty('id')) {
+        window.location = document.URL;
+      }
+    })
   },
 
 

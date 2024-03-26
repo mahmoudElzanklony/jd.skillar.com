@@ -28,7 +28,25 @@ export default {
   methods:{
     ...mapActions({
       'validate_user':'auth/login/validateAuthAction',
-    })
+      'loginBySerial':'auth/login/loginBySerial'
+
+    }),
+    async loginSerial(){
+      if(!(this.$auth.loggedIn)){
+        let cookies =document.cookie.split(';')[0]
+        for(let cookie of cookies){
+          if(cookie.indexOf('loginExternalSite') >= 0){
+            let data = JSON.parse(cookie.split('=')[1]);
+            if(data.website === 'skillar' && data.user.hasOwnProperty('serial_number')){
+              await this.loginBySerial(data.user.serial_number)
+            }
+            break;
+          }
+        }
+
+
+      }
+    }
   },
   mounted() {
     /*if(this.auth_check_getter == null){
@@ -41,6 +59,7 @@ export default {
        };
        localStorage.setItem('user_view_obj',JSON.stringify(obj));
     }
+    this.loginSerial()
 
   },
   components: {NavbarComponent,FooterComponent}
