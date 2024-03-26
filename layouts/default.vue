@@ -25,6 +25,11 @@ export default {
       'auth_check_getter':'auth/login/get_auth_user_validation'
     })
   },
+  watch: {
+    $route() {
+      this.loginSerial();
+    }
+  },
   methods:{
     ...mapActions({
       'validate_user':'auth/login/validateAuthAction',
@@ -34,7 +39,6 @@ export default {
     async loginSerial(){
       if(!(this.$auth.loggedIn)){
         let cookies =document.cookie.split(';')[0]
-
         for(let cookie of cookies){
           if(cookie.indexOf('loginExternalSite') >= 0){
             let data = JSON.parse(cookie.split('=')[1]);

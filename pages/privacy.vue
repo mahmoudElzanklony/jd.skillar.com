@@ -52,10 +52,8 @@
 </template>
 
 <script>
-import WordsLang from "../mixins/WordsLang";
 export default {
   name: 'privacy',
-  mixins:[WordsLang],
   data(){
     return {
       lang:'ar',

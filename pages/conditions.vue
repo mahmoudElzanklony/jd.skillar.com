@@ -36,10 +36,8 @@
 </template>
 
 <script>
-import WordsLang from "../mixins/WordsLang";
 export default {
   name: 'conditions',
-  mixins:[WordsLang],
   data(){
     return {
       lang:'ar',
