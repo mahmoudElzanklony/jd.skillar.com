@@ -136,7 +136,7 @@ export const actions = {
     //this.$auth.logout();
 
     return this.$axios.post('logout').then((e)=>{
-      document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+      document.cookie = "loginExternalSite=; domain=.skillar.com; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
       localStorage.clear();
       window.location = document.URL;
     })

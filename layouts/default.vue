@@ -38,7 +38,6 @@ export default {
     }),
     async loginSerial(){
       if(!(this.$auth.loggedIn)){
-        console.log('hhhhhhhhhhhhhhhhhh')
         let cookies =document.cookie.split(';')
         for(let cookie of cookies){
           if(cookie.indexOf('loginExternalSite') >= 0){
