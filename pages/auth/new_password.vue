@@ -5,7 +5,7 @@
         <div class="row h-100">
           <div class="col-md-5 mb-2 mt-3 d-flex align-items-center">
             <div class="form-data w-100">
-              <form class="p-3" method="post" @submit.prevent="reset">
+              <form class="p-3" method="post" @submit.prevent="reset_password">
                 <h2 >{{ words.new_password }}</h2>
                 <input type="hidden" name="serial_number" :value="$route.query.serial_number">
                 <div class="form-group mb-3 input-icon flex-wrap">

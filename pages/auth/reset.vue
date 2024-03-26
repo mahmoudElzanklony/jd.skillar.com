@@ -5,8 +5,9 @@
         <div class="row h-100">
           <div class="col-md-5 mb-2 mt-3 d-flex align-items-center">
             <div class="form-data w-100">
-              <p class="fw-bold p-3">{{ words.forget_password }}</p>
+
               <form class="p-3" method="post" @submit.prevent="reset">
+                <h2>{{ words.forget_password }}</h2>
                 <div class="form-group mb-2 input-icon flex-wrap">
                   <label>{{ words.email }}</label>
                   <input class="form-control" name="email" required>
