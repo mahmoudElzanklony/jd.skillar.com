@@ -37,6 +37,9 @@ export default {
 
     }),
     async loginSerial(){
+      if(!(localStorage.hasOwnProperty('skillar_name'))){
+        localStorage.setItem('skillar_name',window.location.origin)
+      }
       if(!(this.$auth.loggedIn)){
         let cookies =document.cookie.split(';')
         for(let cookie of cookies){

@@ -118,6 +118,9 @@ import {mapGetters,mapActions} from 'vuex';
 export default {
   name: "register",
   mixins:[WordsLang],
+  async asyncData({redirect}) {
+    return redirect('https://skillar.com/auth/register');
+  },
   async fetch({ store }) {
     await store.dispatch('places/countries/getCountriesAction');
   },

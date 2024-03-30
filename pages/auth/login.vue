@@ -72,6 +72,9 @@ import {mapActions} from 'vuex';
 export default {
   name: "login",
   mixins:[WordsLang],
+  async asyncData({redirect}) {
+    return redirect('https://skillar.com/auth/login');
+  },
   methods:{
     ...mapActions({
       'login':'auth/login/loginAction'
