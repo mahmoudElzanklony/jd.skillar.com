@@ -39,7 +39,7 @@ export default {
     async loginSerial(){
 
       if(document.cookie.indexOf('skillar_name') == -1){
-        document.cookie = 'skillar_name='+window.location.origin+";domain=skillar.com; path=/";
+        document.cookie = 'skillar_name='+window.location.origin+";domain=.skillar.com; path=/";
       }
       if(!(this.$auth.loggedIn)){
         let cookies =document.cookie.split(';')
