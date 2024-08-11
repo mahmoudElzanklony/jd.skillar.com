@@ -73,7 +73,7 @@ export default {
   name: "login",
   mixins:[WordsLang],
   async asyncData({redirect}) {
-    return redirect('https://skillar.com/auth/login');
+    return redirect('https://skillar.com/auth/login?type=https://jd.skillar.com');
   },
   methods:{
     ...mapActions({
