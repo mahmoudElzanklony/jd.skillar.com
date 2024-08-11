@@ -25,7 +25,7 @@
 
         <ul class="navbar-nav mb-2 mb-lg-0 align-items-md-center">
           <li class="nav-item mrl-1" v-if="!($auth.loggedIn)">
-            <a href="/auth/register" class="nav-link btn-bk-primary">{{ words.register }}</a>
+            <a href="/auth/login" class="nav-link btn-bk-primary">{{ words.login }}</a>
           </li>
           <li class="nav-item mrl-1" v-else-if="$auth.loggedIn" @click="logoutAction">
             <a @click.prevent="logoutAction" class="nav-link btn-bk-primary cursor-pointer">{{ words.logout }}</a>
