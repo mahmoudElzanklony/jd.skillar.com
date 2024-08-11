@@ -58,6 +58,8 @@ export default {
     }
   },
   mounted() {
+    document.cookie = "skillar_name=https://"+window.location.host+"; path=/;";
+
     /*if(this.auth_check_getter == null){
        this.validate_user();
     }*/
